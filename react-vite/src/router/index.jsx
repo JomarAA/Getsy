@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Items from '../components/Items/Item';
+import ItemDetails from '../components/ItemDetails/ItemDetails';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupFormPage />,
+      },
+      {
+        path: "/items/:id",
+        element: <ItemDetails />
       },
     ],
   },
