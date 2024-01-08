@@ -43,6 +43,7 @@ class Item(db.Model):
     sellerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.TIMESTAMP, default=datetime.now())
     updatedAt = db.Column(db.TIMESTAMP, default=datetime.now())
@@ -67,7 +68,6 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    status = db.Column(db.String(255), nullable=False)
     item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('items.id')))
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.TIMESTAMP, default=datetime.now())

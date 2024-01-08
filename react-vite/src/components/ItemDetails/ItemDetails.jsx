@@ -11,13 +11,32 @@ const ItemDetails = () => {
 
     const item = useSelector((state) => state.item.oneItem)
 
+
+    console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
+
     useEffect(() => {
         dispatch(thunkGetOneItem(id));
     }, [dispatch]);
 
+    if (!item) {
+        return null
+    }
 
     return (
-        <></>
+        <>
+            <div className='one_item_container' key={item.id}>
+                {item.item}
+                <div className="items">
+                    <div className='display-components'>
+                        <img id='item-img' src={item.image} alt='Item preview' />
+                    </div>
+                    <p className="itemName">{item.name}</p>
+                    <p className="itemDescription">{item.description}</p>
+                    <p className="itemPrice">{item.price}</p>
+
+                </div>
+            </div>
+        </>
     )
 }
 

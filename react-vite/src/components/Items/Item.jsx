@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { thunkGetAllItems } from "../../redux/item";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Item.css";
 
 const Items = () => {
@@ -26,7 +27,7 @@ const Items = () => {
             <div className='items_container'>
                 {itemsArr.map((item) => {
                     return (
-                        <div className='one_item_container' key={item.id}>
+                        <NavLink to={`/items/${item.id}`} className='one_item_container' key={item.id}>
                             {item.item}
                             <div className="items">
                                 <div className='display-components'>
@@ -37,7 +38,7 @@ const Items = () => {
                                 <p className="itemPrice">{item.price}</p>
 
                             </div>
-                        </div>
+                        </NavLink>
                     );
                 })}
             </div>
