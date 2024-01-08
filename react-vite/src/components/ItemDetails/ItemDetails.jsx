@@ -18,26 +18,39 @@ const ItemDetails = () => {
         dispatch(thunkGetOneItem(id));
     }, [dispatch]);
 
+    const handleAddToCart = () => {
+        dispatch(thunkAddToCart(item));
+    };
+
+    const isItemInCart = cartItems.hasOwnProperty(item.id);
+
     if (!item) {
         return null
     }
 
     return (
         <>
-            <div className='one_item_container' key={item.id}>
+            <div className="one_item_container" key={item.id}>
                 {item.item}
                 <div className="items">
-                    <div className='display-components'>
-                        <img id='item-img' src={item.image} alt='Item preview' />
+                    <div className="display-components">
+                        <img id="item-img" src={item.image} alt="Item preview" />
                     </div>
                     <p className="itemName">{item.name}</p>
                     <p className="itemDescription">{item.description}</p>
                     <p className="itemPrice">{item.price}</p>
-
+                    {!isItemInCart ? (
+                        <button className="addToCartButton" onClick={handleAddToCart}>
+                            Add to Cart
+                        </button>
+                    ) : (
+                        <p className="itemInCartMessage">Item is already in the cart</p>
+                    )}
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
+
 
 export default ItemDetails
