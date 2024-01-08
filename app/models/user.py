@@ -11,13 +11,6 @@ SCHEMA = os.environ.get('SCHEMA')
 
 
 
-# add function to add a prefix to table names in production environment only
-def add_prefix_for_prod(attr):
-    if environment == "production":
-        return f"{SCHEMA}.{attr}"
-    else:
-        return attr
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
