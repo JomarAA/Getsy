@@ -17,7 +17,6 @@ def get_cart_items_by_user(user_id):
 
 
 @cart_routes.route('/<int:item_id>', methods=['POST'])
-@login_required
 def add_to_cart(item_id):
     quantity = request.json.get('quantity')
 
@@ -34,7 +33,6 @@ def add_to_cart(item_id):
     return jsonify(message='Item added to cart successfully')
 
 @cart_routes.route('/checkout', methods=['POST'])
-@login_required
 def checkout_cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()
 

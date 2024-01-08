@@ -30,7 +30,6 @@ def get_single_item(id):
 
 
 @item_routes.route('/current')
-@login_required
 def get_curr_items():
     userId = current_user.id
 
@@ -42,7 +41,6 @@ def get_curr_items():
 
 
 @item_routes.route('/new', methods=['POST'])
-@login_required
 def create_new_item():
 
     form = ItemForm()
