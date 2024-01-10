@@ -3,6 +3,7 @@ import ProfileButton from "./ProfileButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import "./Navigation.css";
 
+
 function Navigation() {
 
   const user = useSelector((state) => state.session.user)
@@ -26,7 +27,7 @@ function Navigation() {
         </>
 
       )}
-      {user && (<ProfileButton />)}
+      <ProfileButton />
 
     </ul>
   );

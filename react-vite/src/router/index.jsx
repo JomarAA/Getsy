@@ -6,6 +6,8 @@ import ItemDetails from '../components/ItemDetails/ItemDetails';
 import Layout from './Layout';
 import CreateItem from '../components/CreateItem/CreateItem';
 import CurrentItems from '../components/CurrentItems/CurrentItems';
+import UpdateItem from '../components/UpdateItem/UpdateItem';
+import Cart from '../components/Cart/Cart';
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "/items/current",
         element: <CurrentItems />
+      },
+      {
+        path: "/items/:id/update",
+        element: <UpdateItem />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
       {
         path: "/*",

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import './CurrentItems.css'
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import { getCurrentItems } from "../../redux/item";
+import { getCurrentItems, thunkDeleteItem } from "../../redux/item";
 
 const CurrentItems = () => {
     const dispatch = useDispatch()
@@ -26,19 +26,38 @@ const CurrentItems = () => {
     }, [dispatch])
 
 
+
+    const handleDelete = async (itemId) => {
+        const result = await dispatch(thunkDeleteItem(itemId));
+        console.log(result);
+
+        await dispatch(getCurrentItems())
+    };
+
+
+
     return (
         <>
             <div>
                 {userItemsArray.map((item) => (
-                    <div key={item.id}>
-                        <img src={item.image} alt={item.name} />
-                        <p>Name: {item.name}</p>
-                        <p>Price: {item.price}</p>
+                    <div key={item.id} className="single_item">
+                        <NavLink to={`/items/${item.id}`} className="navlink">
+                            {/* Use NavLink to navigate to /items/:id */}
+                            <img src={item.image} alt={item.name} />
+                            <p>Name: {item.name}</p>
+                            <p>Price: {item.price}</p>
+                            <p>Quantity: {item.quantity}</p>
+                        </NavLink>
+                        <NavLink to={`/items/${item.id}/update`} className="update-link">
+                            {/* Use Link to navigate to /items/:id/update */}
+                            Update
+                        </NavLink>
+                        <button onClick={() => handleDelete(item.id)}>Delete Item</button>
                     </div>
                 ))}
             </div>
         </>
-    )
+    );
 }
 
 

@@ -6,12 +6,27 @@ from flask_login import login_required
 
 cart_routes = Blueprint('cart', __name__)
 
-@cart_routes.route('/')
+@cart_routes.route('/user')
 @login_required
-def get_cart_items_by_user(user_id):
-    cart_items = Cart.query.filter_by(user_id=user_id).all()
+def get_cart():
+    userId = current_user.id
+    cart_items = Cart.query.filter_by(user_id=userId).all()
 
-    cart_data = [cart_item.to_dict() for cart_item in cart_items]
+    cart_data = []
+
+    for cart_item in cart_items:
+        item = Item.query.get(cart_item.item_id)
+        if item:
+            cart_data.append({
+                'cart_id': cart_item.id,
+                'item_id': item.id,
+                'item_name': item.name,
+                'item_description': item.description,
+                'item_quantity': cart_item.quantity,
+                'item_price': item.price,
+                'image': item.image,
+                'created_at': cart_item.created_at
+            })
 
     return jsonify(cart_data)
 

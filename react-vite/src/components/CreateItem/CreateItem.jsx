@@ -1,7 +1,7 @@
 import "./CreateItem.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkCreateItem, thunkGetAllItems, thunkGetOneItem } from "../../redux/item";
+import { thunkCreateItem, thunkGetAllItems, thunkGetOneItem, getCurrentItems } from "../../redux/item";
 import { useNavigate } from "react-router-dom";
 
 const CreateItem = () => {
@@ -20,52 +20,71 @@ const CreateItem = () => {
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [imageError, setImageError] = useState("");
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const item = {
-            name,
-            image,
-            description,
-            price: parseInt(price)
+        if (!image) {
+            setImageError("Please select an image.");
+            return; // Prevent form submission
+        } else {
+            setImageError(""); // Clear the image error when an image is selected
         }
 
-        await dispatch(thunkCreateItem(item))
+        const item = new FormData()
 
-        await dispatch(thunkGetAllItems)
+        item.append("name", name)
+        item.append("price", price)
+        item.append("description", description)
+        item.append("image", image)
+        item.append("quantity", quantity)
 
-        const newItem = await dispatch(thunkGetOneItem(createdItem.id))
 
-        navigate(`/items/${newItem.id}`)
+
+        const newItem = await dispatch(thunkCreateItem(item))
+
+        await dispatch(getCurrentItems)
+
+
+        navigate(`/items/current`)
+
     }
 
     return (
         <div className="'create-item-container">
             <h2>Create a new product to sell</h2>
-            <form onSubmit={handleSubmit} className="create-item-form">
+            <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-item-form">
 
                 <input
                     id="name-input"
                     type='text'
                     placeholder='What is your product called'
-                    onChange={e => setName(e.target.value)}  //changes the state first
-                    value={name}  //then we get it from the state
+                    onChange={e => setName(e.target.value)}
+                    value={name}
                 />
                 <input
                     id="description-input"
                     type='text'
                     placeholder='Describe your product'
-                    onChange={e => setDescription(e.target.value)}  //changes the state first
-                    value={description}  //then we get it from the state
+                    onChange={e => setDescription(e.target.value)}
+                    value={description}
                 />
                 <input
                     id="price-input"
-                    type='text'
+                    type='number'
                     placeholder=''
-                    onChange={e => setPrice(e.target.value)}  //changes the state first
-                    value={price}  //then we get it from the state
+                    onChange={e => setPrice(e.target.value)}
+                    value={price}
+                />
+                <input
+                    id="quantity-input"
+                    type='number'
+                    placeholder=''
+                    onChange={e => setQuantity(e.target.value)}
+                    value={quantity}
                 />
                 <label className="image-input">
                     <h3 className="h4-text">Upload images of your product</h3>
@@ -74,6 +93,7 @@ const CreateItem = () => {
                         type="file"
                         onChange={(e) => setImage(e.target.files[0])}
                     />
+                    <div className="error-message">{imageError}</div>
                 </label>
                 <button className="item-submit">Submit</button>
             </form>

@@ -3,6 +3,14 @@ const LOAD_ONE_ITEM = 'items/loadOneItem'
 const CREATE_ITEM = 'items/createItem'
 const LOAD_CART = 'items/cart'
 const LOAD_USER_ITEMS = '/items/loadUserItems'
+const UPDATE_ITEM= '/items/updateItem'
+const DELETE_ITEM = 'items/deleteItem';
+
+
+const deleteItem = (itemId) => ({
+    type: DELETE_ITEM,
+    itemId
+});
 
 const loadUserItems = (userItems) => {
     return {
@@ -13,7 +21,7 @@ const loadUserItems = (userItems) => {
 
 const loadCart = (cart) => {
     return {
-        type: ADD_CART_ITEM,
+        type: LOAD_CART,
         cart
     }
 }
@@ -39,8 +47,30 @@ const loadAllItems = (allItems) => {
     }
 }
 
+const updateItem = (item) => {
+    return {
+        type: UPDATE_ITEM,
+        item
+    }
+}
+
+export const thunkDeleteItem = (id) => async (dispatch) => {
+    const res = await fetch(`/api/items/${id}/delete`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+    });
+
+    if (res.ok) {
+        dispatch(deleteItem(id));
+        return 'Item deleted successfully';
+    } else {
+        console.error('Error deleting item');
+        return 'Error deleting item';
+    }
+};
+
 export const thunkGetCart = () => async (dispatch) => {
-    const res = await fetch('/api/cart');
+    const res = await fetch(`/api/cart/user`);
     if (res.ok) {
         const cartItems = await res.json()
         dispatch(loadCart(cartItems));
@@ -57,8 +87,7 @@ export const thunkGetCart = () => async (dispatch) => {
 export const thunkCreateItem = (item) => async (dispatch) => {
     const res = await fetch(`/api/items/new`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item)
+        body: item
       });
 
     if (res.ok) {
@@ -73,6 +102,22 @@ export const thunkCreateItem = (item) => async (dispatch) => {
         return error;
       }
 }
+
+export const thunkUpdateItem = (id, item) => async (dispatch) => {
+    const res = await fetch(`/api/items/${id}/update`, {
+        method: "PUT",
+        body: item
+    })
+
+    if (res.ok) {
+        const updatedItem = await res.json();
+        dispatch(updateItem(id))
+    } else {
+        const updatedItem = await res.json()
+        return updatedItem
+    }
+}
+
 
 export const thunkGetAllItems = () => async (dispatch) => {
     console.log("before fetch")
@@ -115,11 +160,12 @@ export const getCurrentItems = () => async (dispatch) => {
            return items
       }
 
-
 }
 
 const initialState = {
-    userItems: []
+    userItems: [],
+    allItems: [],
+    cart: []
 }
 
 
@@ -127,9 +173,8 @@ const itemsReducer = (state = initialState, action) => {
     console.log("%c   LOOK HERE", "color: purple; font-size: 18px", action)
     switch (action.type) {
         case LOAD_ALL_ITEMS: {
-            const newState = {...initialState};
-            action.allItems.forEach((item) => newState[item.id] = item)
-        return newState
+            let newState = {...state, allItems:{...action.allItems}};
+              return newState
         }
         case LOAD_ONE_ITEM: {
             let nextState = {...state, oneItem: null}
@@ -141,14 +186,21 @@ const itemsReducer = (state = initialState, action) => {
             return newState
         }
         case LOAD_CART: {
-            let newState = {...state};
-            action.cartItems.forEach((item) => newState[item.id] = item)
+            let newState = {...state, cart:{...action.cart}};
             return newState
         }
         case LOAD_USER_ITEMS: {
             let newState = {...state, userItems:{...action.userItems.item}};
-
               return newState
+        }
+        case UPDATE_ITEM: {
+            const newState = {...state, [action.payload]: {...state[action.payload]}}
+            return newState
+        }
+        case DELETE_ITEM: {
+            const newState = { ...state };
+            delete newState[action.itemId];
+            return newState;
         }
     default:
         return state

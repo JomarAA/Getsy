@@ -1,4 +1,3 @@
-
 const ADD_TO_CART = 'cart/ADD_TO_CART';
 const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
 const CLEAR_CART = 'cart/CLEAR_CART';
@@ -14,7 +13,7 @@ const clearCart = () => ({
   type: CLEAR_CART,
 });
 
-export const thunkAddToCart = () => async (dispatch) => {
+export const thunkAddToCart = (id, item) => async (dispatch) => {
     const res = await fetch(`/api/cart/${id}`, {
         method:'POST',
         headers: { 'Content-Type': 'application/json' },

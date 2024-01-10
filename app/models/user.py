@@ -62,6 +62,7 @@ class Item(db.Model):
             'sellerId': self.sellerId,
             'name': self.name,
             'description': self.description,
+            'quantity': self.quantity,
             'price': self.price,
             'image': self.image,
             'createdAt': self.createdAt,

@@ -8,19 +8,25 @@ import "./Item.css";
 const Items = () => {
     const dispatch = useDispatch();
 
-    let items = useSelector((state) => state.item)
+    let items = useSelector((state) => state.item.allItems)
 
-    const itemsArr = Object.values(items)
-
-
-
-
-
-    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', itemsArr)
 
     useEffect(() => {
         dispatch(thunkGetAllItems());
     }, [dispatch]);
+
+    if (!items) {
+        return null
+    }
+
+    const itemsArr = Object.values(items)
+
+    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', itemsArr)
+
+
+
+
+
 
     return (
         <>
