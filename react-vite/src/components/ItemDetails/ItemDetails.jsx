@@ -30,25 +30,25 @@ const ItemDetails = () => {
     }
 
     return (
-        <>
-            <div className='one_item_container' key={item.id}>
-                {item.item}
-                <div className="items">
-                    <div className='display-components'>
-                        <img id='item-img' src={item.image} alt='Item preview' />
-                    </div>
-                    <p className="itemName">{item.name}</p>
-                    <p className="itemDescription">{item.description}</p>
-                    <p className="itemPrice">{item.price}</p>
-                    <p className="itemQuantity">{item.quantity}</p>
-                    {item.sellerId !== sessionUser.id && (
-                        <button className="addToCartButton" onClick={addToCart}>
-                            Add to Cart
-                        </button>
-                    )}
-                </div>
+
+        <div className='one_item_container' key={item.id}>
+
+
+            <div className='display-components'>
+                <img className='item-detail-img' src={item.image} alt='Item preview' />
             </div>
-        </>
+            <p className="itemName">{item.name}</p>
+            <p className="itemDescription">{item.description}</p>
+            <p className="itemPrice">{item.price}</p>
+            <p className="itemQuantity">{item.quantity}</p>
+            {item.sellerId !== sessionUser.id && (
+                <button className="addToCartButton" onClick={addToCart}>
+                    Add to Cart
+                </button>
+            )}
+        </div>
+
+
     )
 }
 

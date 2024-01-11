@@ -1,0 +1,11 @@
+.items-container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Create 4 columns */
+    gap: 20px; /* Adjust the gap between items as needed */
+    justify-content: center; /* Center the items horizontally */
+  }

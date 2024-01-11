@@ -4,6 +4,7 @@
 
 body {
   position: relative;
+  background-color: #e9e4d2;
 }
 
 .user_icon {
@@ -22,7 +23,7 @@ body {
 }
 
 .navbar {
-  position: sticky;
+  /* position: sticky; */
   top: 0px;
   display: flex;
   justify-content: space-between;

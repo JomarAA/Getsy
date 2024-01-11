@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./Item.css";
+import ItemCard from "../ItemCard/ItemCard"
 
-const Items = () => {
+export default function Items() {
     const dispatch = useDispatch();
 
     let items = useSelector((state) => state.item.allItems)
@@ -29,27 +30,14 @@ const Items = () => {
 
 
     return (
-        <>
-            <div className='items_container'>
-                {itemsArr.map((item) => {
-                    return (
-                        <NavLink to={`/items/${item.id}`} className='one_item_container' key={item.id}>
-                            {item.item}
-                            <div className="items">
-                                <div className='display-components'>
-                                    <img id='item-img' src={item.image} alt='Item preview' />
-                                </div>
-                                <p className="itemName">{item.name}</p>
-                                <p className="itemDescription">{item.description}</p>
-                                <p className="itemPrice">{item.price}</p>
 
-                            </div>
-                        </NavLink>
-                    );
-                })}
+        <div className='items-container'>
+            <h1>Welcome to Getsy!</h1>
+            <div className="items-grid">
+                {itemsArr.map(item => (
+                    <ItemCard item={item} key={item.id} />))}
             </div>
-        </>
+        </div>
+
     )
 }
-
-export default Items

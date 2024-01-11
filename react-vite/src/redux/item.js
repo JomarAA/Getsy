@@ -170,7 +170,7 @@ const initialState = {
 
 
 const itemsReducer = (state = initialState, action) => {
-    console.log("%c   LOOK HERE", "color: purple; font-size: 18px", action)
+    // console.log("%c   LOOK HERE", "color: purple; font-size: 18px", action)
     switch (action.type) {
         case LOAD_ALL_ITEMS: {
             let newState = {...state, allItems:{...action.allItems}};

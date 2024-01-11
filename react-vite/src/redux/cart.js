@@ -1,7 +1,7 @@
 const ADD_TO_CART = 'cart/ADD_TO_CART';
 const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
 const CLEAR_CART = 'cart/CLEAR_CART';
-
+const UPDATE_CART = 'cart/UPDATE_CART'
 
 const addToCart = (item) => ({
   type: ADD_TO_CART,
@@ -12,6 +12,30 @@ const addToCart = (item) => ({
 const clearCart = () => ({
   type: CLEAR_CART,
 });
+
+const updateCart = (item) => ({
+  type: UPDATE_CART,
+  item
+})
+
+export const thunkUpdateCart = (id, quantity) => async (dispatch) => {
+  const res = await fetch(`/api/cart/${id}/update`, {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(quantity)
+  })
+  if (res.ok) {
+    const updatedCartItem = await res.json()
+    dispatch(updateCart(id, updatedCartItem))
+    return updatedCartItem
+  } else {
+       console.log('status code:', res.status)
+        console.log("POST error message")
+        const error = await res.json();
+        console.log('error', error)
+        return error;
+  }
+}
 
 export const thunkAddToCart = (id, item) => async (dispatch) => {
     const res = await fetch(`/api/cart/${id}`, {
@@ -25,6 +49,18 @@ export const thunkAddToCart = (id, item) => async (dispatch) => {
         dispatch(addToCart(cartItem))
         return cartItem
     }
+}
+
+export const thunkClearCart = () => async (dispatch) => {
+  const res = await fetch(`/api/cart/checkout`, {
+    method: 'DELETE',
+    headers: { "Content-Type": "application/json" },
+  })
+
+  if (res.ok) {
+    dispatch(clearCart())
+    return 'Cart cleared successfully'
+  }
 
 }
 
@@ -44,6 +80,12 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         items: {},
       };
+      case UPDATE_CART: {
+        const updatedCartItems = state.cartItems.map((item) =>
+          item.id === action.item.id ? action.item : item
+        );
+        return { ...state, cartItems: updatedCartItems };
+      }
     default:
       return state;
   }

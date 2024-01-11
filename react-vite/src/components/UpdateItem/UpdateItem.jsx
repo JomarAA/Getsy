@@ -61,6 +61,8 @@ const UpdateItem = () => {
         item.append("image", image)
         item.append("quantity", quantity)
 
+        // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', item)
+
         let newItem = await dispatch(thunkUpdateItem(id, item))
 
         setSubmitted(false)
