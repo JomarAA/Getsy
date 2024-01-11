@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import './UpdateItem.css'
 import { NavLink, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import { thunkUpdateItem, thunkGetOneItem } from "../../redux/item";
+import { thunkUpdateItem, thunkGetOneItem, getCurrentItems } from "../../redux/item";
 
 const UpdateItem = () => {
     const dispatch = useDispatch()
@@ -67,9 +67,10 @@ const UpdateItem = () => {
 
         setSubmitted(false)
 
-        if (newItem) {
-            navigate(`/items/${id}`)
-        }
+        await dispatch(getCurrentItems())
+
+
+        navigate(`/items/current`)
     }
 
     return (

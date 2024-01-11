@@ -117,7 +117,7 @@ def update_item(id):
         item.price = form.price.data
         db.session.commit()
 
-        return 'Item updated successfully'
+        return jsonify('Item updated successfully')
 
     else:
         return form.errors

@@ -1,0 +1,43 @@
+.modal_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 20px 20px 20px;
+}
+
+.modal_container > h1{
+    margin: 20px;
+}
+
+.logIn_SingUp_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.logIn_SingUp_form > input {
+        width: 20em;
+}
+
+.logIn_SingUp_form > label {
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.logIn_SingUp_form > button {
+    margin-top: 6px;
+    padding: 10px 0;
+    background-color: white;
+    border: 2px solid gray;
+    cursor: pointer;
+    margin: 15px 0px;
+}
+
+.logIn_SingUp_form > button:hover {
+    background-color: #B92B27;
+    color: white;
+}
+
+.error {
+    font-size: 10px;
+    color: #B92B27;
+}

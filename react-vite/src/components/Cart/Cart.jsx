@@ -28,6 +28,12 @@ const Cart = () => {
         return null;
     }
 
+    useEffect(() => {
+        if (!sessionUser) {
+            navigate("/");
+        }
+    }, [sessionUser, navigate]);
+
     const cartArr = Object.values(cartItems);
 
     console.log('%c   LOOK HERE', 'color: green; font-size: 18px', cartItems);
@@ -54,48 +60,47 @@ const Cart = () => {
         }
     }
 
+    const handleClick = () => {
+        navigate(`/items/${item.id}`)
+    }
+
     return (
-        <>
+        <div className="product-container">
             <h1>Cart</h1>
 
-            <div className="items_container">
-                {cartArr.map((item) => {
-                    return (
-                        <div className="one_item_container" key={item.id}>
-                            <div className="item-link">
-                                <NavLink to={`/items/${item.id}`} className="item-link">
-                                    <div className="display-components">
-                                        <img id="item-img" src={item.image} alt="Item preview" />
-                                    </div>
-                                    <div className="itemName">{item.item_name}</div>
-                                    <p className="itemDescription">{item.item_description}</p>
-                                    <p className="itemPrice">{item.item_price}</p>
-                                </NavLink>
-                                <div className="quantity-control">
-                                    <input
-                                        type="number"
-                                        value={newQuantities[item.id] || ''}
-                                        onChange={(e) => {
-                                            setNewQuantities((prevQuantities) => ({
-                                                ...prevQuantities,
-                                                [item.id]: e.target.value
-                                            }));
-                                        }}
-                                        placeholder={item.item_quantity}
-                                    />
-                                    <button onClick={() => handleUpdate(item.id)} className="quantity-submit">Update Item</button>
-                                </div>
-                            </div>
+            <div className="product-grid">
+                {cartArr.map((item) => (
+                    <div className="cart-card" item={item} key={item.id}>
+
+                        <img id="item-img" src={item.image} alt="Item preview" />
+
+                        <div className="itemName">{item.item_name}</div>
+                        <p className="itemDescription">{item.item_description}</p>
+                        <p className="itemPrice">{item.item_price}</p>
+
+                        <div className="quantity-control">
+                            <input
+                                type="number"
+                                value={newQuantities[item.id] || ''}
+                                onChange={(e) => {
+                                    setNewQuantities((prevQuantities) => ({
+                                        ...prevQuantities,
+                                        [item.id]: e.target.value
+                                    }));
+                                }}
+                                placeholder={item.item_quantity}
+                            />
+                            <button onClick={() => handleUpdate(item.id)} className="quantity-submit">Update Item</button>
                         </div>
-                    );
-                })}
+                    </div>
+                ))}
             </div>
             {cartArr.length > 0 && (
                 <button onClick={handleClearCart} className="clear-cart-button">
                     Checkout Cart
                 </button>
             )}
-        </>
+        </div>
     );
 }
 

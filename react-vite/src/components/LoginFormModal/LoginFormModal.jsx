@@ -2,6 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -10,6 +11,7 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,32 +30,43 @@ function LoginFormModal() {
     }
   };
 
+  const demo = async (e) => {
+    e.preventDefault()
+    return await dispatch(thunkLogin({ email: 'demo@aa.io', password: 'password' }))
+      .then(closeModal)
+      .then(navigate('/'))
+  }
+
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
+      <div className="modal_container">
+        {/* <h1>LoginFormModal</h1> */}
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit} className="logIn_SingUp_form">
+          <label>
+            Email
+          </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
+          {errors.email && <p className="error">*{errors.email}</p>}
+          <label>
+            Password
+          </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
+          {errors.password && <p className="error">*{errors.password}</p>}
+          <button type="submit" disabled={!email || !password}>Log In</button>
+        </form>
+        <button onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>
+      </div>
     </>
   );
 }

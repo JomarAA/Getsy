@@ -1,0 +1,9 @@
+.cart-card {
+    max-width: 370px;
+    max-height: 450px;
+    border-radius: 15%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 10px;
+    background-color: white;
+  }

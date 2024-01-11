@@ -1,0 +1,73 @@
+/* CreateItem.css */
+
+.create-item-wrapper {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    min-height: 100vh;
+    text-align: center; /* Center form contents horizontally */
+  }
+
+  .create-item-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .create-item-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .create-item-form {
+    width: 100%;
+    text-align: center; /* Center form contents horizontally */
+  }
+
+  .create-item-form input[type="text"],
+  .create-item-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px; /* Increase the margin to widen the space */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .image-input {
+    margin-bottom: 20px; /* Increase margin for image input */
+  }
+
+  .image-input .h4-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .image-input .inner-input {
+    width: 100%; /* Ensure file input takes full width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .item-submit {
+    background-color: rgba(236, 160, 20, 0.889);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .item-submit:hover {
+    background-color: rgba(236, 160, 20, 0.889);
+  }
