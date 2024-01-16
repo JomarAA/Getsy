@@ -8,6 +8,11 @@ const addToCart = (item) => ({
   item,
 });
 
+const removeFromCart = (itemId) => ({
+  type: REMOVE_FROM_CART,
+  itemId
+})
+
 
 const clearCart = () => ({
   type: CLEAR_CART,
@@ -17,6 +22,20 @@ const updateCart = (item) => ({
   type: UPDATE_CART,
   item
 })
+
+export const thunkRemoveFromCart = (id) => async (dispatch) => {
+  const res = await fetch(`/api/cart/${id}/delete`, {
+    method: 'DELETE',
+    headers: { "Content-Type": "application/json" },
+  })
+  if (res.ok) {
+    dispatch(removeFromCart(id));
+    return 'Item deleted successfully';
+} else {
+    console.error('Error deleting item');
+    return 'Error deleting item';
+}
+}
 
 export const thunkUpdateCart = (id, quantity) => async (dispatch) => {
   const res = await fetch(`/api/cart/${id}/update`, {

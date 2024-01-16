@@ -2,7 +2,7 @@ import "./Cart.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCart } from "../../redux/item";
-import { thunkClearCart, thunkUpdateCart } from "../../redux/cart";
+import { thunkClearCart, thunkUpdateCart, thunkRemoveFromCart } from "../../redux/cart";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -19,6 +19,7 @@ const Cart = () => {
     const [image, setImage] = useState("");
     const [id, setId] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const [quantityErrors, setQuantityErrors] = useState({});
 
     useEffect(() => {
         dispatch(thunkGetCart());
@@ -46,22 +47,45 @@ const Cart = () => {
         }
     }
 
+    const handleDelete = async (itemId) => {
+        const result = await dispatch(thunkRemoveFromCart(itemId));
+        console.log(result);
+
+        await dispatch(thunkGetCart())
+    };
+
+    // const handleUpdate = async (id) => {
+    //     setSubmitted(true);
+    //     const selectedItem = cartArr.find((item) => item.id === id);
+    //     const quantity = {
+    //         "quantity": newQuantities[id]
+    //     }
+    //     console.log('%c   LOOK HERE', 'color: red; font-size: 18px', selectedItem);
+    //     const serverResponse = await dispatch(thunkUpdateCart(id, quantity));
+    //     if (serverResponse) {
+    //         await dispatch(thunkGetCart());
+    //         await dispatch(thunkGetCart())
+    //     }
+    // }
+
     const handleUpdate = async (id) => {
-        setSubmitted(true);
-        const selectedItem = cartArr.find((item) => item.id === id);
-        const quantity = {
-            "quantity": newQuantities[id]
+        setQuantityErrors({ ...quantityErrors, [id]: "" }); // Clear any previous errors
+        const quantity = newQuantities[id] || 1; // Default to 1 if input is empty or invalid
+
+        // Validate the input value
+        if (isNaN(quantity) || quantity < 1) {
+            setQuantityErrors({ ...quantityErrors, [id]: "Quantity must be at least 1." });
+            return; // Exit if validation fails
         }
-        console.log('%c   LOOK HERE', 'color: red; font-size: 18px', selectedItem);
-        const serverResponse = await dispatch(thunkUpdateCart(id, quantity));
+
+        const serverResponse = await dispatch(thunkUpdateCart(id, { quantity }));
         if (serverResponse) {
             await dispatch(thunkGetCart());
-            await dispatch(thunkGetCart())
         }
-    }
 
-    const handleClick = () => {
-        navigate(`/items/${item.id}`)
+        const handleClick = () => {
+            navigate(`/items/${item.id}`)
+        }
     }
 
     return (
@@ -70,15 +94,16 @@ const Cart = () => {
 
             <div className="product-grid">
                 {cartArr.map((item) => (
-                    <div className="cart-card" item={item} key={item.id}>
+                    <div className="product-card" item={item} key={item.id}>
 
                         <img id="item-img" src={item.image} alt="Item preview" />
 
-                        <div className="itemName">{item.item_name}</div>
-                        <p className="itemDescription">{item.item_description}</p>
-                        <p className="itemPrice">{item.item_price}</p>
+                        <div id='item-name'>Name:{item.item_name}</div>
+                        <div id='item-description'>Description:{item.item_description}</div>
+                        <div id='item-quantity'>Price:{item.item_price}</div>
 
                         <div className="quantity-control">
+                            Quantity:
                             <input
                                 type="number"
                                 value={newQuantities[item.id] || ''}
@@ -90,13 +115,19 @@ const Cart = () => {
                                 }}
                                 placeholder={item.item_quantity}
                             />
-                            <button onClick={() => handleUpdate(item.id)} className="quantity-submit">Update Item</button>
+                            <div className="error-message">
+                                {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
+                            </div>
+                            <div className="product-button-container">
+                                <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
+                                <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
             {cartArr.length > 0 && (
-                <button onClick={handleClearCart} className="clear-cart-button">
+                <button onClick={handleClearCart} className="item-submit">
                     Checkout Cart
                 </button>
             )}

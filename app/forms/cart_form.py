@@ -7,5 +7,5 @@ from ..api.AWS_helpers import ALLOWED_EXTENSIONS
 
 
 class CartForm(FlaskForm):
-    quantity = IntegerField("Quantity", validators=[DataRequired()])
+    quantity = IntegerField("Quantity", validators=[DataRequired(), NumberRange(min=1, message='Quantity must be at least 1 to update')])
     submit = SubmitField('Post Item')

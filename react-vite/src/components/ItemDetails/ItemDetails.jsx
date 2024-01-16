@@ -44,7 +44,7 @@ const ItemDetails = () => {
             <p className="itemQuantity">{item.quantity}</p>
             {sessionUser ? (
                 item.sellerId !== sessionUser.id ? (
-                    <button className="addToCartButton" onClick={addToCart}>
+                    <button className="product-button" onClick={addToCart}>
                         Add to Cart
                     </button>
                 ) : null

@@ -62,14 +62,17 @@ align-items: center;
 
 .profile-dropdown {
   position: fixed;
-  right: 3.4em;
+  width: 150px;
+  right: .5em;
   top: 3.70em;
-  background-color: #e9e4d2;
+  background-color: white;
   border: 1px solid gray;
   padding: 10px 15px;
   border-radius: 10px;
   font-weight: normal;
 }
+
+
 
 ul>li {
   list-style: none;
@@ -95,4 +98,28 @@ ul>li {
 .cart-text {
   display: none;
   margin-left: 5px;
+}
+
+#user-info-container {
+  background: #ffffff;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-wrap: break-word;
+}
+
+.profile-actions {
+  color: rgba(236, 160, 20, 0.889);
+}
+
+.login-container {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 5px 0;
+  list-style: none;
+}
+
+.profile-text {
+  color: orange;
 }

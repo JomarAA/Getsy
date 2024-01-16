@@ -82,3 +82,14 @@ def update_item_in_cart(id):
 
 
     return jsonify(message='Item updated in cart successfully', cart_item=cart_item.to_dict())
+
+
+@cart_routes.route('/<int:id>/delete', methods=["DELETE"])
+@login_required
+def delete_cart_item(id):
+    item = Cart.query.get(id)
+
+    db.session.delete(item)
+    db.session.commit()
+
+    return 'Item deleted successfully'
