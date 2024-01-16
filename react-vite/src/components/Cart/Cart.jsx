@@ -20,26 +20,10 @@ const Cart = () => {
     const [id, setId] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [quantityErrors, setQuantityErrors] = useState({});
-
+    const cartArr = Object.values(cartItems);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        dispatch(thunkGetCart());
-    }, [dispatch]);
 
-    if (!cartItems) {
-        return null;
-    }
-
-    useEffect(() => {
-        if (!sessionUser) {
-            navigate("/");
-        }
-    }, [sessionUser, navigate]);
-
-    const cartArr = Object.values(cartItems);
-
-    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', cartItems);
 
     const handleClearCart = async (e) => {
         const confirmClear = window.confirm("Are you sure you want to checkout the cart?");
@@ -56,19 +40,6 @@ const Cart = () => {
         await dispatch(thunkGetCart())
     };
 
-    // const handleUpdate = async (id) => {
-    //     setSubmitted(true);
-    //     const selectedItem = cartArr.find((item) => item.id === id);
-    //     const quantity = {
-    //         "quantity": newQuantities[id]
-    //     }
-    //     console.log('%c   LOOK HERE', 'color: red; font-size: 18px', selectedItem);
-    //     const serverResponse = await dispatch(thunkUpdateCart(id, quantity));
-    //     if (serverResponse) {
-    //         await dispatch(thunkGetCart());
-    //         await dispatch(thunkGetCart())
-    //     }
-    // }
     const handleClick = () => {
         navigate(`/items/${item.id}`)
     }
@@ -93,6 +64,36 @@ const Cart = () => {
         }
 
 
+    }
+
+    useEffect(() => {
+        if (!sessionUser) {
+            navigate("/");
+        } else {
+            dispatch(thunkGetCart())
+                .then(() => {
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    console.error('Failed to load cart items', error);
+                    setIsLoading(false);
+                });
+        }
+    }, [sessionUser, navigate, dispatch]);
+
+    if (isLoading) {
+        return
+    }
+
+    if (!cartItems || !Object.values(cartItems).length) {
+        return (
+            <div className="empty-cart-message">
+                <h2>Your cart is empty. Discover something new to fill it up.</h2>
+                <button onClick={() => navigate('/')} className="product-button">
+                    Shop Now
+                </button>
+            </div>
+        );
     }
 
     return (
