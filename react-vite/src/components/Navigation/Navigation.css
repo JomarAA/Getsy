@@ -4,8 +4,9 @@
 
 body {
   position: relative;
-  background-color: #e9e4d2;
+  background: linear-gradient(to bottom, #ffffe0 0%, #ffffe0 600px, white 800px);
 }
+
 
 .user_icon {
   font-size: 25px;
@@ -53,7 +54,7 @@ align-items: center;
 }
 
 .navLink:hover {
-  color: #B92B27;
+  color: rgba(236, 160, 20, 0.889);
 }
 
 .navLink.active {

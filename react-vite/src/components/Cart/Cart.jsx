@@ -87,7 +87,7 @@ const Cart = () => {
 
     if (!cartItems || !Object.values(cartItems).length) {
         return (
-            <div className="empty-cart-message">
+            <div className="product-container">
                 <h2>Your cart is empty. Discover something new to fill it up.</h2>
                 <button onClick={() => navigate('/')} className="product-button">
                     Shop Now
