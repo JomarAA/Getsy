@@ -72,7 +72,7 @@ def create_new_item():
             db.session.add(new_item)
             db.session.commit()
 
-            return 'Item created successfully'
+            return new_item.to_dict()
         else:
             return 'No file uploaded'
 
@@ -117,7 +117,7 @@ def update_item(id):
         item.price = form.price.data
         db.session.commit()
 
-        return jsonify('Item updated successfully')
+        return item.to_dict()
 
     else:
         return form.errors

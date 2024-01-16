@@ -65,7 +65,7 @@ function LoginFormModal() {
           {errors.password && <p className="error">*{errors.password}</p>}
           <button type="submit" disabled={!email || !password}>Log In</button>
         </form>
-        <button onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>
+        <button className="product-button" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>
       </div>
     </>
   );

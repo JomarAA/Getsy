@@ -16,7 +16,7 @@ body {
 
 .homenav {
   text-decoration: none;
-  font-family: sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   font-weight: bold;
   font-size: 28px;
   color: rgba(236, 160, 20, 0.889);
@@ -71,6 +71,10 @@ align-items: center;
   border-radius: 10px;
   font-weight: normal;
   list-style: none;
+}
+
+.profile-button {
+  background-color: rgb(231, 225, 225);
 }
 
 .cart-icon {

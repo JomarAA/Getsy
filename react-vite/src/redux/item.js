@@ -93,7 +93,7 @@ export const thunkCreateItem = (item) => async (dispatch) => {
     if (res.ok) {
         const newItem = await res.json()
         dispatch(createItem(newItem))
-        return newItem
+        return
     } else {
         console.log('status code:', res.status)
         console.log("POST error message")

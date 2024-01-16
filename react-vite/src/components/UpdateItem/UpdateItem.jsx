@@ -30,6 +30,8 @@ const UpdateItem = () => {
         return null
     }
 
+
+
     const [isLoading, setIsLoading] = useState(true);
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -37,6 +39,54 @@ const UpdateItem = () => {
     const [quantity, setQuantity] = useState('')
     const [image, setImage] = useState('')
     const [submittted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        const validationErrors = {}
+
+        if (image && image.name) {
+            const validExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
+            const imageExtension = validExtensions.find(extension =>
+                image.name.toLowerCase().endsWith(extension)
+            );
+
+            if (!imageExtension) {
+                validationErrors.image = "File does not have an approved extension: jpg, jpeg, png, pdf, gif."
+            }
+        }
+        // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', image.name)
+
+        if (!name) {
+            validationErrors.name = "Please enter a name.";
+        }
+        else if (name.length < 3) {
+            validationErrors.name = "Name must be at least 3 characters long"
+        }
+
+        if (!description) {
+            validationErrors.description = "Please enter a description.";
+        }
+        else if (description.length < 4) {
+            validationErrors.description = "Description must be at least 4 characters long"
+        }
+
+        if (!price) {
+            validationErrors.price = "Please set a price for your product.";
+        }
+        else if (price < .5 || price > 9999999) {
+            validationErrors.price = "Invalid price input";
+        }
+
+        if (!quantity) {
+            validationErrors.quantity = "Please set the quantity available for your product.";
+        }
+        else if (quantity < 1 || quantity > 999999) {
+            validationErrors.quantity = "Invalid quantity input";
+        }
+
+        setErrors(validationErrors)
+
+    }, [name, price, description, quantity, image])
 
     useEffect(() => {
         if (item && isLoading) {
@@ -52,6 +102,10 @@ const UpdateItem = () => {
         e.preventDefault();
 
         setSubmitted(true)
+
+        if (Object.values(errors).length) {
+            return
+        }
 
         const item = new FormData()
 
@@ -77,9 +131,10 @@ const UpdateItem = () => {
         <>
             <div className='one_item_container' key={item.id}>
                 {item.item}
-                <div className="items">
+                <div className="product-edit">
+                    <h2>Edit your product</h2>
                     <div className='display-components'>
-                        <img id='item-img' src={item.image} alt='Item preview' />
+                        <img className="item-detail-img" src={item.image} />
                     </div>
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-item-form">
                         <div id="image-input">
@@ -95,6 +150,11 @@ const UpdateItem = () => {
                                 placeholder='image'
                             />
                         </div>
+                        <div className="errors">
+                            {submittted && errors.image && (
+                                <span className="error-message">{errors.image}</span>
+                            )}
+                        </div>
                         <div id="name-input">
                             <div className="label-and-error">
                                 <label htmlFor="name">name</label>
@@ -108,6 +168,11 @@ const UpdateItem = () => {
                                 }}
                                 placeholder='Name'
                             />
+                        </div>
+                        <div className="errors">
+                            {submittted && errors.name && (
+                                <span className="error-message">{errors.name}</span>
+                            )}
                         </div>
                         <div id="description-input">
                             <div className="label-and-error">
@@ -123,19 +188,29 @@ const UpdateItem = () => {
                                 placeholder='description'
                             />
                         </div>
-                        <div id="price-input">
-                            <div className="label-and-error">
-                                <label htmlFor="price">Price</label>
+                        <div className="errors">
+                            <div className="errors">
+                                {submittted && errors.description && (
+                                    <span className="error-message">{errors.description}</span>
+                                )}
+                                <div id="price-input">
+                                    <div className="label-and-error">
+                                        <label htmlFor="price">Price</label>
+                                    </div>
+                                    <input
+                                        id="price"
+                                        type="number"
+                                        value={price}
+                                        onChange={(e) => {
+                                            setPrice(e.target.value)
+                                        }}
+                                        placeholder='Price'
+                                    />
+                                </div>
                             </div>
-                            <input
-                                id="price"
-                                type="number"
-                                value={price}
-                                onChange={(e) => {
-                                    setPrice(e.target.value)
-                                }}
-                                placeholder='Price'
-                            />
+                            {submittted && errors.price && (
+                                <span className="error-message">{errors.price}</span>
+                            )}
                         </div>
                         <div id="quantity-input">
                             <div className="label-and-error">
@@ -152,6 +227,11 @@ const UpdateItem = () => {
                             />
                         </div>
                         <button className="item-submit">Submit</button>
+                        <div className="errors">
+                            {submittted && errors.quantity && (
+                                <span className="error-message">{errors.quantity}</span>
+                            )}
+                        </div>
                     </form>
                 </div>
             </div>

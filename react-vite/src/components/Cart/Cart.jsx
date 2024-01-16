@@ -21,6 +21,8 @@ const Cart = () => {
     const [submitted, setSubmitted] = useState(false);
     const [quantityErrors, setQuantityErrors] = useState({});
 
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         dispatch(thunkGetCart());
     }, [dispatch]);
@@ -67,15 +69,22 @@ const Cart = () => {
     //         await dispatch(thunkGetCart())
     //     }
     // }
+    const handleClick = () => {
+        navigate(`/items/${item.id}`)
+    }
+
+    const handleShop = () => {
+        navigate(`/`)
+    }
 
     const handleUpdate = async (id) => {
-        setQuantityErrors({ ...quantityErrors, [id]: "" }); // Clear any previous errors
-        const quantity = newQuantities[id] || 1; // Default to 1 if input is empty or invalid
+        setQuantityErrors({ ...quantityErrors, [id]: "" });
+        const quantity = newQuantities[id] || 1;
 
-        // Validate the input value
+
         if (isNaN(quantity) || quantity < 1) {
             setQuantityErrors({ ...quantityErrors, [id]: "Quantity must be at least 1." });
-            return; // Exit if validation fails
+            return;
         }
 
         const serverResponse = await dispatch(thunkUpdateCart(id, { quantity }));
@@ -83,51 +92,59 @@ const Cart = () => {
             await dispatch(thunkGetCart());
         }
 
-        const handleClick = () => {
-            navigate(`/items/${item.id}`)
-        }
+
     }
 
     return (
         <div className="product-container">
             <h1>Cart</h1>
 
-            <div className="product-grid">
-                {cartArr.map((item) => (
-                    <div className="product-card" item={item} key={item.id}>
+            {cartArr.length <= 0 ? (
+                <div className="empty-cart-message">
+                    <h2>Your cart is empty. Discover something new to fill it up.</h2>
+                    <button onClick={handleShop} className="product-button">
+                        Shop Now
+                    </button>
+                </div>
+            ) : (
+                <div className="product-grid">
+                    {cartArr.map((item) => (
+                        <div className="product-card" item={item} key={item.id}>
 
-                        <img id="item-img" src={item.image} alt="Item preview" />
 
-                        <div id='item-name'>Name:{item.item_name}</div>
-                        <div id='item-description'>Description:{item.item_description}</div>
-                        <div id='item-quantity'>Price:{item.item_price}</div>
+                            <img id="item-img" src={item.image} alt="Item preview" />
 
-                        <div className="quantity-control">
-                            Quantity:
-                            <input
-                                type="number"
-                                value={newQuantities[item.id] || ''}
-                                onChange={(e) => {
-                                    setNewQuantities((prevQuantities) => ({
-                                        ...prevQuantities,
-                                        [item.id]: e.target.value
-                                    }));
-                                }}
-                                placeholder={item.item_quantity}
-                            />
-                            <div className="error-message">
-                                {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
-                            </div>
-                            <div className="product-button-container">
-                                <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
-                                <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                            <div id='item-name'>Name:{item.item_name}</div>
+                            <div id='item-description'>Description:{item.item_description}</div>
+                            <div id='item-quantity'>Price:{item.item_price}</div>
+
+                            <div className="quantity-control">
+                                Quantity:
+                                <input
+                                    type="number"
+                                    value={newQuantities[item.id] || ''}
+                                    onChange={(e) => {
+                                        setNewQuantities((prevQuantities) => ({
+                                            ...prevQuantities,
+                                            [item.id]: e.target.value
+                                        }));
+                                    }}
+                                    placeholder={item.item_quantity}
+                                />
+                                <div className="error-message">
+                                    {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
+                                </div>
+                                <div className="product-button-container">
+                                    <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
+                                    <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
             {cartArr.length > 0 && (
-                <button onClick={handleClearCart} className="item-submit">
+                <button onClick={handleClearCart} className="product-button">
                     Checkout Cart
                 </button>
             )}

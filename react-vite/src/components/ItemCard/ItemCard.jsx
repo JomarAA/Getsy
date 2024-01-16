@@ -15,8 +15,6 @@ export default function ItemCard({ item }) {
             <img id='item-img' src={item.image} alt='Item preview' />
             <div className="item-price">${item.price}</div>
 
-
-
         </div>
     )
 }

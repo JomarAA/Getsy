@@ -33,6 +33,18 @@ const CreateItem = () => {
         if (!image) {
             validationErrors.image = "Please select an image.";
         }
+
+        if (image && image.name) {
+            const validExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
+            const imageExtension = validExtensions.find(extension =>
+                image.name.toLowerCase().endsWith(extension)
+            );
+
+            if (!imageExtension) {
+                validationErrors.image = "File does not have an approved extension: jpg, jpeg, png, pdf, gif."
+            }
+        }
+
         if (!name) {
             validationErrors.name = "Please enter a name.";
         }
@@ -49,11 +61,18 @@ const CreateItem = () => {
 
         if (!price) {
             validationErrors.price = "Please set a price for your product.";
+        }
 
+        if (price < .5 || price > 9999999) {
+            validationErrors.price = "Invalid price input";
         }
 
         if (!quantity) {
             validationErrors.quantity = "Please set the quantity available for your product.";
+        }
+
+        if (quantity < 1 || quantity > 999999) {
+            validationErrors.quantity = "Invalid quantity input";
         }
 
         setErrors(validationErrors)
@@ -65,27 +84,32 @@ const CreateItem = () => {
 
         setHasSubmitted(true)
 
-        if (!Object.values(errors).length) {
+        setIsLoading(true)
+
+        if (Object.values(errors).length) {
+            return
+        }
 
 
+        const item = new FormData()
 
-            const item = new FormData()
+        item.append("name", name)
+        item.append("price", price)
+        item.append("description", description)
+        item.append("image", image)
+        item.append("quantity", quantity)
 
-            item.append("name", name)
-            item.append("price", price)
-            item.append("description", description)
-            item.append("image", image)
-            item.append("quantity", quantity)
+        if (item && isLoading) {
 
-            setHasSubmitted(false)
 
             const serverResponse = await dispatch(thunkCreateItem(item))
 
-            await dispatch(getCurrentItems())
+            setHasSubmitted(false)
+
+            console.log('%c   LOOK HERE', 'color: red; font-size: 18px', hasSubmitted)
 
             navigate(`/items/current`)
         }
-
 
 
     }

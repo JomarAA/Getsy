@@ -13,6 +13,7 @@ export default function ProductCard({ item }) {
     }
 
     const handleDelete = async (itemId) => {
+        const confirmClear = window.confirm("Are you sure you want to delete this item?");
         const result = await dispatch(thunkDeleteItem(itemId));
         console.log(result);
 
