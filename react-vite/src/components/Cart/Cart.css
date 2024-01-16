@@ -27,8 +27,8 @@ h1 {
 .product-button {
   background-color: rgba(236, 160, 20, 0.889);
   color: white;
-  padding: 2px 2px;
-  border: none;
+  padding: 2px 5px;
+  border: 1px solid grey;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;

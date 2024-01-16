@@ -64,20 +64,14 @@ align-items: center;
   position: fixed;
   width: 150px;
   right: .5em;
-  top: 3.70em;
+  top: 4.15em;
   background-color: white;
   border: 1px solid gray;
   padding: 10px 15px;
   border-radius: 10px;
   font-weight: normal;
-}
-
-
-
-ul>li {
   list-style: none;
 }
-
 
 .cart-icon {
   display: flex;
@@ -118,6 +112,8 @@ ul>li {
   text-align: center;
   padding: 5px 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-text {
