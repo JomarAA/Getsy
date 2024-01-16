@@ -23,7 +23,7 @@ const CreateItem = () => {
     const [quantity, setQuantity] = useState('')
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
 
 
@@ -36,9 +36,15 @@ const CreateItem = () => {
         if (!name) {
             validationErrors.name = "Please enter a name.";
         }
+        if (name.length < 3) {
+            validationErrors.name = "Name must be at least 3 characters long"
+        }
 
         if (!description) {
             validationErrors.description = "Please enter a description.";
+        }
+        if (description.length < 4) {
+            validationErrors.description = "Description must be at least 4 characters long"
         }
 
         if (!price) {
@@ -71,9 +77,11 @@ const CreateItem = () => {
             item.append("image", image)
             item.append("quantity", quantity)
 
-            setIsLoading(true)
+            setHasSubmitted(false)
 
             const serverResponse = await dispatch(thunkCreateItem(item))
+
+            await dispatch(getCurrentItems())
 
             navigate(`/items/current`)
         }

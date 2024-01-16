@@ -1,12 +1,11 @@
-/* CreateItem.css */
+
 
 .create-item-wrapper {
     padding-top: 50px;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     min-height: 100vh;
-    text-align: center; /* Center form contents horizontally */
+    text-align: center;
   }
 
   .create-item-container {
@@ -22,21 +21,21 @@
 
   .create-item-form {
     width: 100%;
-    text-align: center; /* Center form contents horizontally */
+    text-align: center;
   }
 
   .create-item-form input[type="text"],
   .create-item-form input[type="number"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px; /* Increase the margin to widen the space */
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
   }
 
   .image-input {
-    margin-bottom: 20px; /* Increase margin for image input */
+    margin-bottom: 20px;
   }
 
   .image-input .h4-text {
@@ -45,7 +44,7 @@
   }
 
   .image-input .inner-input {
-    width: 100%; /* Ensure file input takes full width */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -54,7 +53,7 @@
 
   .error-message {
     color: red;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 5px;
   }
 

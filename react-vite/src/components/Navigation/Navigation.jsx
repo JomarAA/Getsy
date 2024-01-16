@@ -4,11 +4,14 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import "./Navigation.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 
 function Navigation() {
 
   const user = useSelector((state) => state.session.user)
+
+  const navigate = useNavigate()
 
 
 

@@ -53,7 +53,6 @@ function SignupFormModal() {
         ...serverResponse,
       });
     } else {
-      // Clear errors when the form is submitted successfully
       setErrors({
         firstname: "",
         lastname: "",
@@ -64,7 +63,7 @@ function SignupFormModal() {
         server: "",
       });
 
-      // Reset form fields
+
       setFirstname("");
       setLastname("");
       setEmail("");

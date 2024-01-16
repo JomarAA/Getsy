@@ -8,13 +8,13 @@ import { thunkAddToCart } from "../../redux/cart";
 const ItemDetails = () => {
     const dispatch = useDispatch()
 
+    const sessionUser = useSelector((state) => state.session.user);
     const { id } = useParams()
 
     const item = useSelector((state) => state.item.oneItem)
-    const sessionUser = useSelector((state) => state.session.user);
 
 
-    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
+    console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', sessionUser)
 
     useEffect(() => {
         dispatch(thunkGetOneItem(id));
@@ -29,6 +29,7 @@ const ItemDetails = () => {
         return null
     }
 
+
     return (
 
         <div className='one_item_container' key={item.id}>
@@ -41,10 +42,14 @@ const ItemDetails = () => {
             <p className="itemDescription">{item.description}</p>
             <p className="itemPrice">{item.price}</p>
             <p className="itemQuantity">{item.quantity}</p>
-            {item.sellerId !== sessionUser.id && (
-                <button className="addToCartButton" onClick={addToCart}>
-                    Add to Cart
-                </button>
+            {sessionUser ? (
+                item.sellerId !== sessionUser.id ? (
+                    <button className="addToCartButton" onClick={addToCart}>
+                        Add to Cart
+                    </button>
+                ) : null
+            ) : (
+                null
             )}
         </div>
 

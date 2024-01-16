@@ -1,18 +1,17 @@
 .one_item_container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    height: 100vh; /* Use the full viewport height */
-    text-align: center; /* Center text within the container */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
   }
 
 .item-detail-img {
-    max-width: 500px; /* Adjust the width as needed for item details */
-    max-height: 500px; /* Adjust the height as needed for item details */
+    max-width: 500px;
+    max-height: 500px;
   }
 
-  /* Optionally, style other item details elements as needed */
   .itemName {
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;

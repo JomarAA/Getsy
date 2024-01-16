@@ -15,7 +15,7 @@ const Cart = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [newQuantities, setNewQuantities] = useState({}); // Use an object to track quantities for each item
+    const [newQuantities, setNewQuantities] = useState({});
     const [image, setImage] = useState("");
     const [id, setId] = useState("");
     const [submitted, setSubmitted] = useState(false);
