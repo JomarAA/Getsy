@@ -33,6 +33,7 @@ export default function Items() {
 
         <div className='items-container'>
             <h1>Welcome to Getsy!</h1>
+            <h3>Get what you want and what need.</h3>
             <div className="items-grid">
                 {itemsArr.map(item => (
                     <ItemCard item={item} key={item.id} />))}

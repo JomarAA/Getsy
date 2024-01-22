@@ -4,7 +4,7 @@
 
 body {
   position: relative;
-  background: linear-gradient(to bottom, #ffffe0 0%, #ffffe0 600px, white 800px);
+  background: linear-gradient(to bottom, #c8c24a 0%, #ffffe0 600px, white 800px);
 }
 
 
@@ -76,7 +76,9 @@ align-items: center;
 
 .profile-button {
   background-color: rgb(231, 225, 225);
+  cursor: pointer;
 }
+
 
 .cart-icon {
   display: flex;

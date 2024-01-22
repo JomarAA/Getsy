@@ -64,6 +64,17 @@ const Cart = () => {
         }
 
 
+
+    }
+
+    console.log('%c   LOOK HERE', 'color: red; font-size: 18px', cartArr)
+
+    const calculateTotal = () => {
+        let total = 0;
+        for (const item of cartArr) {
+            total += item.item_price * (newQuantities[item.id] || item.item_quantity);
+        }
+        return total;
     }
 
     useEffect(() => {
@@ -145,9 +156,12 @@ const Cart = () => {
                 </div>
             )}
             {cartArr.length > 0 && (
-                <button onClick={handleClearCart} className="product-button">
-                    Checkout Cart
-                </button>
+                <>
+                    <h3>Cart Total: ${calculateTotal()}</h3>
+                    <button onClick={handleClearCart} className="product-button">
+                        Checkout Cart
+                    </button>
+                </>
             )}
         </div>
     );
