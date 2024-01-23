@@ -31,10 +31,6 @@ def get_cart():
                 'id': cart_item.id
             })
 
-#   items = [Item.query.get(item.item_id) for item in cart_items]
-
-#     cart_data = [item.to_dict() for item in items]
-
     return jsonify(cart_data)
 
 
@@ -55,6 +51,7 @@ def add_to_cart(item_id):
     return jsonify(message='Item added to cart successfully')
 
 @cart_routes.route('/checkout', methods=['DELETE'])
+@login_required
 def checkout_cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()
 
