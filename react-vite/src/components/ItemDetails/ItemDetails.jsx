@@ -31,7 +31,13 @@ const ItemDetails = () => {
     }, [dispatch, id]);
 
     if (isLoading) {
-        return null
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">
+                    Loading...
+                </div>
+            </div>
+        );
     }
 
 

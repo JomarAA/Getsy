@@ -93,7 +93,13 @@ const Cart = () => {
     }, [sessionUser, navigate, dispatch]);
 
     if (isLoading) {
-        return
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">
+                    Loading...
+                </div>
+            </div>
+        );
     }
 
     if (!cartItems || !Object.values(cartItems).length) {
