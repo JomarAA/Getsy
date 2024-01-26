@@ -35,7 +35,7 @@ function Navigation() {
         </div>
       </ul>
       <footer>
-        Developed by: <a href="https://www.linkedin.com" className="linkedin-link">John</a>
+        Developed by: <a href="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className="linkedin-link">Jomar Yanos</a>
       </footer>
     </>
   );
