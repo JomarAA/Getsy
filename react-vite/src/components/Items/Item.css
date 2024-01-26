@@ -1,6 +1,7 @@
 .items-container {
     text-align: center;
     padding: 20px;
+
   }
 
   .items-grid {
@@ -8,4 +9,12 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     justify-content: center;
+    padding-top: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  h2{
+    text-decoration: none;
+    font-weight: lighter;
   }

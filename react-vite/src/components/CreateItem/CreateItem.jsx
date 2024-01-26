@@ -20,7 +20,7 @@ const CreateItem = () => {
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [quantity, setQuantity] = useState('')
+    const [quantity, setQuantity] = useState(1)
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
@@ -163,6 +163,7 @@ const CreateItem = () => {
                     </div>
                     <input
                         id="quantity-input"
+                        className="hidden"
                         type='number'
                         placeholder='Set the quantity available for sale'
                         onChange={e => setQuantity(e.target.value)}

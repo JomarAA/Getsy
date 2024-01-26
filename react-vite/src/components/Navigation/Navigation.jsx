@@ -22,7 +22,7 @@ function Navigation() {
 
         {user && (
           <>
-            <NavLink to='/items/new' className={'navLink'}>Post new product</NavLink>
+            <NavLink to='/items/new' className={'navLink'}>Share new product</NavLink>
             <NavLink to='/items/current' className={'navLink'}>Your products</NavLink>
             <NavLink to='/cart' className={'navLink'}>
               <span className="cart-icon">

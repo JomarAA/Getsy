@@ -4,7 +4,7 @@
 
 body {
   position: relative;
-  background: linear-gradient(to bottom, #c8c24a 0%, #ffffe0 600px, white 800px);
+  background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 600px, white 800px);
 }
 
 
@@ -32,7 +32,7 @@ align-items: center;
   /* width: 1024px; */
   padding: 20px 70px;
   border-bottom: 1px solid rgba(146, 146, 146, 0.6);
-  background-color: #F1F2F2;
+  background-color: white;
   padding-bottom: 30px;
   box-shadow: 0px 2px 10px rgba(146, 146, 146, 0.6);
   text-decoration: none;

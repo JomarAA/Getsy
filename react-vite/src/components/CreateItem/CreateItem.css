@@ -70,3 +70,7 @@
   .item-submit:hover {
     background-color: rgba(236, 160, 20, 0.889);
   }
+
+  .hidden {
+    display: none;
+  }

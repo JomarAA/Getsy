@@ -57,7 +57,7 @@ const ItemDetails = () => {
             <p className="itemName">{item.name}</p>
             <p className="itemDescription">Description: {item.description}</p>
             <p className="itemPrice">Price: {item.price}</p>
-            <p className="itemQuantity">Available: {item.quantity}</p>
+            {/* <p className="itemQuantity">Available: {item.quantity}</p> */}
             {sessionUser ? (
                 item.sellerId !== sessionUser.id ? (
                     <button className="product-button" onClick={addToCart}>
