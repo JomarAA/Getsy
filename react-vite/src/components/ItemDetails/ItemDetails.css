@@ -1,41 +1,59 @@
+.content-container {
+  display: flex;
+  justify-content: center;
+}
+
 .one_item_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 600px;
+  text-align: center;
+  width: 85%;
+  background: white;
+  margin-top: 40px;
+  border-radius: 10%;
+}
 
 .item-detail-img {
-    max-width: 500px;
-    max-height: 500px;
-    border-radius: 10%;
-  }
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 10%;
+}
 
-  .itemName {
-    font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.item-details {
+  text-align: left;
+  width: 400px;
+}
 
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
+/* Add this new CSS for the dropdown container */
+.d {
+  position: relative; /* Set the dropdown container to relative positioning */
 
-  .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Use full viewport height to center vertically */
-  }
+}
 
-  .typing-effect {
-    font-size: 2em;
-    border-right: 2px solid;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 7ch; /* Adjust the width to fit your text */
-    animation: typing 2s steps(10) infinite;
-    color: rgba(236, 160, 20, 0.889)
-  }
+/* Style for the dropdown itself */
+.quantity-select {
+  width: 100%; /* Make the dropdown full width of its container */
+  -webkit-appearance: none; /* Remove default styling */
+  -moz-appearance: none; /* Remove default styling */
+  appearance: none; /* Remove default styling */
+  padding: 10px; /* Add some padding */
+  font-size: 16px; /* Increase font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Slightly round the corners */
+}
+
+/* Style for the 'Add to Cart' button */
+.product-button {
+  display: block; /* Make the button a block element */
+  width: 100%; /* Full width */
+  margin-top: 10px; /* Add space between the dropdown and the button */
+}
+
+/* Ensure the 'Add to Cart' button is below the dropdown */
+.item-actions {
+  display: flex;
+  flex-direction: column; /* Stack them vertically */
+  align-items: flex-start; /* Align to start of flex container */
+}

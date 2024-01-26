@@ -66,6 +66,7 @@ function LoginFormModal() {
           <button type="submit" disabled={!email || !password}>Log In</button>
         </form>
         <button className="product-button" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>
+
       </div>
     </>
   );

@@ -66,3 +66,31 @@ h1 {
   animation: typing 2s steps(10) infinite;
   color: rgba(236, 160, 20, 0.889)
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 920px;
+}
+
+
+.quantity-button{
+  display: block;
+  background-color: rgba(236, 160, 20, 0.889);
+  color: white;
+  padding: 2px 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+  width: 170px;
+  height: 37px;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Aligns children (including buttons) on the cross axis */
+  /* ... other styles ... */
+}

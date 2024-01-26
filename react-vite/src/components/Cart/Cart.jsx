@@ -74,7 +74,7 @@ const Cart = () => {
         for (const item of cartArr) {
             total += item.item_price * (newQuantities[item.id] || item.item_quantity);
         }
-        return total;
+        return total.toFixed(2);
     }
 
     useEffect(() => {
@@ -106,7 +106,7 @@ const Cart = () => {
         return (
             <div className="product-container">
                 <h2>Your cart is empty. Discover something new to fill it up.</h2>
-                <button onClick={() => navigate('/')} className="product-button">
+                <button onClick={() => navigate('/')} className="quantity-button">
                     Shop Now
                 </button>
             </div>
@@ -140,11 +140,13 @@ const Cart = () => {
                                 Quantity:
                                 <input
                                     type="number"
+                                    min="1" // This prevents the input from going below 1
                                     value={newQuantities[item.id] || ''}
                                     onChange={(e) => {
+                                        const value = parseInt(e.target.value, 10);
                                         setNewQuantities((prevQuantities) => ({
                                             ...prevQuantities,
-                                            [item.id]: e.target.value
+                                            [item.id]: value >= 1 ? value : 1 // This enforces the minimum value of 1
                                         }));
                                     }}
                                     placeholder={item.item_quantity}
@@ -164,7 +166,7 @@ const Cart = () => {
             {cartArr.length > 0 && (
                 <>
                     <h3>Cart Total: ${calculateTotal()}</h3>
-                    <button onClick={handleClearCart} className="product-button">
+                    <button onClick={handleClearCart} className="quantity-button">
                         Checkout Cart
                     </button>
                 </>

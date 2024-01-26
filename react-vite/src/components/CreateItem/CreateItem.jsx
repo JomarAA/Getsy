@@ -153,7 +153,7 @@ const CreateItem = () => {
                         id="price-input"
                         type='number'
                         placeholder='Set a price for your product'
-                        onChange={e => setPrice(e.target.value)}
+                        onChange={e => setPrice(Math.max(0, e.target.value))}
                         value={price}
                     />
                     <div className="errors">

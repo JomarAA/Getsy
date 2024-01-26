@@ -4,7 +4,7 @@
 
 body {
   position: relative;
-  background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 600px, white 800px);
+  background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 550px, white 550px);
 }
 
 
@@ -79,6 +79,10 @@ align-items: center;
   cursor: pointer;
 }
 
+.profile-text {
+  cursor: pointer;
+}
+
 
 .cart-icon {
   display: flex;
@@ -125,4 +129,20 @@ align-items: center;
 
 .profile-text {
   color: orange;
+}
+
+.linkedin-link {
+  text-decoration: none;
+}
+
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5; /* You can change the background color as needed */
+  color: black; /* And the text color */
+  text-align: center;
+  padding: 10px 0; /* Adjust padding to your preference */
 }

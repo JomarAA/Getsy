@@ -41,9 +41,9 @@ def add_to_cart(item_id):
     cart_item = Cart.query.filter_by(user_id=current_user.id, item_id=item_id).first()
 
     if cart_item:
-        cart_item.quantity += 1
+        cart_item.quantity += quantity  # Increment by the provided quantity
     else:
-        cart_item = Cart(user_id=current_user.id, item_id=item_id, quantity=1)
+        cart_item = Cart(user_id=current_user.id, item_id=item_id, quantity=quantity)
         db.session.add(cart_item)
 
     db.session.commit()
