@@ -70,7 +70,7 @@ h1 {
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 920px;
+  height: 100%
 }
 
 

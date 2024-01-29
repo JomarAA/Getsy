@@ -151,11 +151,19 @@ const CreateItem = () => {
                     </div>
                     <input
                         id="price-input"
-                        type='number'
+                        type='text' // Use text to ensure users can enter decimal points
                         placeholder='Set a price for your product'
-                        onChange={e => setPrice(Math.max(0, e.target.value))}
+                        onChange={e => setPrice(e.target.value)} // Keep as string during input
+                        onBlur={e => {
+                            // Validate and format only when input loses focus
+                            const value = parseFloat(e.target.value);
+                            if (!isNaN(value) && value >= 0) {
+                                setPrice(value.toFixed(2));
+                            }
+                        }}
                         value={price}
                     />
+
                     <div className="errors">
                         {hasSubmitted && errors.quantity && (
                             <span className="error-message">{errors.quantity}</span>
