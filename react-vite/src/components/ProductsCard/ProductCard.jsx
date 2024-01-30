@@ -31,6 +31,7 @@ export default function ProductCard({ item }) {
             <div className="product-card-content" onClick={handleClick} title={item.name}>
                 <img id='item-img' src={item.image} alt='Item preview' />
                 <div id='item-name'>Name: {item.name}</div>
+                <div id="item-category">Category:{item.category}</div>
                 <div id='item-description'>Description:{item.description}</div>
                 <div id='item-quantity'>Quantity:{item.quantity}</div>
                 <div className="product-price">Price: ${item.price}</div>

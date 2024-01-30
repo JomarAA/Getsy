@@ -3,8 +3,15 @@ const LOAD_ONE_ITEM = 'items/loadOneItem'
 const CREATE_ITEM = 'items/createItem'
 const LOAD_CART = 'items/cart'
 const LOAD_USER_ITEMS = '/items/loadUserItems'
-const UPDATE_ITEM= '/items/updateItem'
+const UPDATE_ITEM= 'items/updateItem'
 const DELETE_ITEM = 'items/deleteItem';
+const LOAD_ITEMS_BY_CATEGORY = 'items/loadItemsByCategory';
+
+
+const loadItemsByCategory = (items, category) => ({
+    type: LOAD_ITEMS_BY_CATEGORY,
+    payload: { items, category },
+});
 
 
 const deleteItem = (itemId) => ({
@@ -53,6 +60,15 @@ const updateItem = (item) => {
         item
     }
 }
+
+export const thunkGetItemsByCategory = (category) => async (dispatch) => {
+    const response = await fetch(`/api/items/category/${category}`);
+    if (response.ok) {
+        const items = await response.json();
+        dispatch(loadItemsByCategory(items, category));
+        return items;
+    }
+};
 
 export const thunkDeleteItem = (id) => async (dispatch) => {
     const res = await fetch(`/api/items/${id}/delete`, {
@@ -165,7 +181,8 @@ export const getCurrentItems = () => async (dispatch) => {
 const initialState = {
     userItems: [],
     allItems: [],
-    cart: []
+    cart: [],
+    category: []
 }
 
 
@@ -176,6 +193,11 @@ const itemsReducer = (state = initialState, action) => {
             let newState = {...state, allItems:{...action.allItems}};
               return newState
         }
+        case LOAD_ITEMS_BY_CATEGORY:
+            return {
+                ...state,
+                category: action.payload.items
+            };
         case LOAD_ONE_ITEM: {
             let nextState = {...state, oneItem: null}
             nextState.oneItem= {...action.item}

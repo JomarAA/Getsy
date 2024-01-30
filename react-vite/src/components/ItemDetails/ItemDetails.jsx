@@ -57,9 +57,11 @@ const ItemDetails = () => {
                     <img className='item-detail-img' src={item.image} alt='Item preview' />
                 </div>
                 <div className="item-details">
-                    <h3 className="itemName">{item.name}</h3>
+                    <p className="itemQuantity">{item.quantity} Available</p>
+                    <h3 className="itemPrice">Price: {item.price}</h3>
+                    <p className="itemName">{item.name}</p>
+                    <p className="itemCategory">Category: {item.category}</p>
                     <p className="itemDescription">Description: {item.description}</p>
-                    <p className="itemPrice">Price: {item.price}</p>
                     {sessionUser && item.sellerId !== sessionUser.id && (
                         <div className="item-actions">
                             <select

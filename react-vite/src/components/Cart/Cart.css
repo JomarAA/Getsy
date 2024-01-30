@@ -67,12 +67,6 @@ h1 {
   color: rgba(236, 160, 20, 0.889)
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  height: 100%
-}
-
 
 .quantity-button{
   display: block;

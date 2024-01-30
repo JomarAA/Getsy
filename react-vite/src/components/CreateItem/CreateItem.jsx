@@ -21,10 +21,12 @@ const CreateItem = () => {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [quantity, setQuantity] = useState(1)
+    const [category, setCategory] = useState('');
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
+    const CATEGORY_CHOICES = ['Accessories', 'Art & Collectibles', 'Baby', 'Bags & Purses', 'Bath & Beauty', 'Books, Movies & Music', 'Clothing', 'Craft Supplies & Tools', 'Electronics & Accessories', 'Gifts', 'Home & Living', 'Jewelry'];
 
 
     useEffect(() => {
@@ -50,6 +52,9 @@ const CreateItem = () => {
         }
         if (name.length < 3) {
             validationErrors.name = "Name must be at least 3 characters long"
+        }
+        if (!category) {
+            validationErrors.category = "Please choose a category.";
         }
 
         if (!description) {
@@ -77,7 +82,7 @@ const CreateItem = () => {
 
         setErrors(validationErrors)
 
-    }, [name, price, description, quantity, image])
+    }, [name, price, description, quantity, image, category])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -91,6 +96,7 @@ const CreateItem = () => {
         }
 
 
+
         const item = new FormData()
 
         item.append("name", name)
@@ -98,6 +104,7 @@ const CreateItem = () => {
         item.append("description", description)
         item.append("image", image)
         item.append("quantity", quantity)
+        item.append("category", category)
 
         if (item && isLoading) {
 
@@ -149,18 +156,28 @@ const CreateItem = () => {
                             <span className="error-message">{errors.price}</span>
                         )}
                     </div>
+                    <div className="errors">
+                        {hasSubmitted && errors.category && (
+                            <span className="error-message">{errors.category}</span>
+                        )}
+                    </div>
+                    <select
+                        id="category-input"
+                        value={category}
+                        onChange={e => setCategory(e.target.value)}
+                    >
+                        <option value="">Select a Category</option>
+                        {CATEGORY_CHOICES.map((cat, index) => (
+                            <option key={index} value={cat}>{cat}</option>
+                        ))}
+                    </select>
                     <input
                         id="price-input"
                         type='text' // Use text to ensure users can enter decimal points
                         placeholder='Set a price for your product'
                         onChange={e => setPrice(e.target.value)} // Keep as string during input
-                        onBlur={e => {
-                            // Validate and format only when input loses focus
-                            const value = parseFloat(e.target.value);
-                            if (!isNaN(value) && value >= 0) {
-                                setPrice(value.toFixed(2));
-                            }
-                        }}
+
+
                         value={price}
                     />
 

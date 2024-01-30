@@ -39,6 +39,11 @@ def get_curr_items():
 
     return jsonify(item=item_data)
 
+@item_routes.route('/category/<string:category>')
+def get_items_by_category(category):
+    items = Item.query.filter_by(category=category).all()
+    return jsonify([item.to_dict() for item in items])
+
 
 @item_routes.route('/new', methods=['POST'])
 @login_required
@@ -66,7 +71,8 @@ def create_new_item():
                 name=form.name.data,
                 description=form.description.data,
                 quantity=form.quantity.data,
-                price=form.price.data
+                price=form.price.data,
+                category=form.category.data
             )
 
             db.session.add(new_item)
@@ -114,6 +120,7 @@ def update_item(id):
         item.name = form.name.data
         item.description = form.description.data
         item.quantity = form.quantity.data
+        item.category = form.category.data
         item.price = form.price.data
         db.session.commit()
 

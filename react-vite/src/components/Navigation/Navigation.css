@@ -3,8 +3,8 @@
 }
 
 body {
-  position: relative;
-  background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 550px, white 550px);
+  /* position: relative; */
+  /* background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 45%, white 70%); */
 }
 
 
@@ -146,3 +146,10 @@ footer {
   text-align: center;
   padding: 10px 0; /* Adjust padding to your preference */
 }
+
+
+/* #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 2000px;
+} */
