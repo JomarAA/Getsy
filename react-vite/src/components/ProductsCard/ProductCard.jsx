@@ -24,7 +24,7 @@ export default function ProductCard({ item }) {
         navigate(`/items/${item.id}/update`)
     }
 
-    console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
+    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
 
     return (
         <div className="product-card">

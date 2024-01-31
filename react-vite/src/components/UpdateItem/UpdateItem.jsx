@@ -12,7 +12,7 @@ const UpdateItem = () => {
     const item = useSelector((state) => state.item.oneItem)
     const navigate = useNavigate()
 
-    console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
+    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
 
     if (!sessionUser) {
         navigate('/')

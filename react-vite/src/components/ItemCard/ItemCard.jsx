@@ -8,7 +8,7 @@ export default function ItemCard({ item }) {
         navigate(`/items/${item.id}`)
     }
 
-    console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
+    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
 
     return (
         <div className="item-card" onClick={handleClick} title={item.name}>

@@ -1,0 +1,28 @@
+.categories-button {
+    background-color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .categories-button i {
+    margin-right: 5px; /* Adjust the space between the icon and the text */
+    cursor: pointer;
+  }
+
+
+  .category-dropdown {
+    position: fixed;
+    width: 150px;
+    right: 32.5em;
+    top: 4.60em;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: normal;
+    list-style: none;
+  }

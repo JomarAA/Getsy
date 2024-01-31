@@ -8,6 +8,7 @@ import CreateItem from '../components/CreateItem/CreateItem';
 import CurrentItems from '../components/CurrentItems/CurrentItems';
 import UpdateItem from '../components/UpdateItem/UpdateItem';
 import Cart from '../components/Cart/Cart';
+import CategoryItems from '../components/CategoryItems.jsx/CategoryItems';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/items/new",
         element: <CreateItem />
+      },
+      {
+        path: "/category/*",
+        element: <CategoryItems />
       },
       {
         path: "/items/current",

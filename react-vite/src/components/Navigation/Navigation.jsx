@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
+import CategoryButton from "./CategoryButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import "./Navigation.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +20,7 @@ function Navigation() {
     <>
       <ul className='navbar'>
         <NavLink to="/" className='homenav'>Getsy</NavLink>
+        <CategoryButton />
         <div className="user-actions">
           {user && (
             <>
