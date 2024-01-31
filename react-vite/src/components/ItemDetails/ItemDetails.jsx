@@ -53,15 +53,14 @@ const ItemDetails = () => {
     return (
         <div className="content-container">
             <div className='one_item_container' key={item.id}>
-                <div className='display-components'>
-                    <img className='item-detail-img' src={item.image} alt='Item preview' />
-                </div>
+
+                <img id='item-detail-img' src={item.image} alt='Item preview' />
+
                 <div className="item-details">
-                    <p className="itemQuantity">{item.quantity} Available</p>
-                    <h3 className="itemPrice">Price: {item.price}</h3>
-                    <p className="itemName">{item.name}</p>
-                    <p className="itemCategory">Category: {item.category}</p>
-                    <p className="itemDescription">Description: {item.description}</p>
+                    <h3 className="itemQuantity">{item.quantity} Available</h3>
+                    <h2 className="itemPrice">$ {item.price}</h2>
+                    <h3 className="itemName">{item.name}</h3>
+                    <h3 className="itemDescription">{item.description}</h3>
                     {sessionUser && item.sellerId !== sessionUser.id && (
                         <div className="item-actions">
                             <select

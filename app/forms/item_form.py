@@ -5,7 +5,7 @@ from flask_wtf.file import FileAllowed, FileRequired
 from ..models.user import Item
 from ..api.AWS_helpers import ALLOWED_EXTENSIONS
 
-choices = ['Accessories', 'Art & Collectibles', 'Baby', 'Bags & Purses', 'Bath & Beauty', 'Books, Movies & Music', 'Clothing', 'Craft Supplies & Tools', 'Electronics & Accessories', 'Gifts', 'Home & Living', 'Jewlery']
+choices = ['Accessories', 'Art & Collectibles', 'Baby', 'Bags & Purses', 'Bath & Beauty', 'Books, Movies & Music', 'Clothing', 'Craft Supplies & Tools', 'Electronics & Accessories', 'Home & Living', 'Jewlery']
 
 class ItemForm(FlaskForm):
     image = FileField("Image File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])

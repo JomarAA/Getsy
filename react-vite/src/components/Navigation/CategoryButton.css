@@ -2,7 +2,7 @@
     background-color: #fff;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: large;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -17,8 +17,8 @@
   .category-dropdown {
     position: fixed;
     width: 150px;
-    right: 32.5em;
-    top: 4.60em;
+    left: 12em;
+    top: 5.00em;
     background-color: white;
     border: 1px solid gray;
     padding: 10px 15px;

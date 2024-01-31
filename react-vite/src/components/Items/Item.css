@@ -21,12 +21,13 @@
     font-weight: lighter;
   }
 
-  .category-container {
+  .slick-slider {
    display: flex;
    flex-direction: row;
-   width: 80%;
+   width: 90%;
    align-self: center;
-   margin-left: 180px;
+   margin-left: 85px;
+   justify-content: space-around;
   }
 
 
@@ -39,6 +40,10 @@
   }
 
   .single-category-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     max-height: 350px;
     max-width: 300px;
     border-radius: 15%;

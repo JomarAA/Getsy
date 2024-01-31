@@ -6,6 +6,7 @@ import "./Navigation.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
+import StoreButton from "./ShopButton";
 
 
 function Navigation() {
@@ -16,16 +17,20 @@ function Navigation() {
 
 
 
+
+
   return (
     <>
       <ul className='navbar'>
-        <NavLink to="/" className='homenav'>Getsy</NavLink>
-        <CategoryButton />
+        <div className="nav-left">
+
+          <NavLink to="/" className='homenav'>Getsy</NavLink>
+          <CategoryButton />
+        </div>
         <div className="user-actions">
           {user && (
             <>
-              <NavLink to='/items/new' className={'navLink'}>Share new product</NavLink>
-              <NavLink to='/items/current' className={'navLink'}>Your products</NavLink>
+              <StoreButton />
               <NavLink to='/cart' className={'navLink'}>
                 <span className="cart-icon">
                   <FontAwesomeIcon icon={faCartShopping} />
@@ -36,9 +41,9 @@ function Navigation() {
           <ProfileButton />
         </div>
       </ul>
-      <footer>
+      {/* <footer>
         Developed by: <a href="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className="linkedin-link">Jomar Yanos</a>
-      </footer>
+      </footer> */}
     </>
   );
 }
