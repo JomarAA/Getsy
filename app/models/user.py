@@ -55,7 +55,7 @@ class Item(db.Model):
     price = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.TIMESTAMP, default=datetime.now())
     updatedAt = db.Column(db.TIMESTAMP, default=datetime.now())
-    category = db.Column(db.Integer, nullable = False)
+    category = db.Column(db.String(100), nullable = False)
 
     def to_dict(self):
         return {
