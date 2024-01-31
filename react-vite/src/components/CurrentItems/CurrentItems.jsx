@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import './CurrentItems.css'
 import { NavLink } from "react-router-dom"
@@ -12,7 +12,9 @@ const CurrentItems = () => {
     const userItems = useSelector((state) => state.item.userItems)
     const userItemsArray = Object.values(userItems);
     const navigate = useNavigate()
-    console.log("%c   LOOK HERE", "color: red; font-size: 18px", userItemsArray)
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadingText, setLoadingText] = useState('');
+
 
     if (!sessionUser) {
         navigate('/')
@@ -22,41 +24,63 @@ const CurrentItems = () => {
         return null
     }
 
-
     useEffect(() => {
+        setIsLoading(true);
         dispatch(getCurrentItems())
-    }, [dispatch])
+            .then(() => {
+                animateLoadingText("Loading...");
+            })
+            .catch((error) => {
+                console.error('Error loading current items', error);
+                setIsLoading(false);
+            });
+    }, [dispatch]);
 
-
-
-    const handleDelete = async (itemId) => {
-        const result = await dispatch(thunkDeleteItem(itemId));
-        console.log(result);
-
-        await dispatch(getCurrentItems())
+    const animateLoadingText = (text) => {
+        let fullText = '';
+        let index = 0;
+        const interval = setInterval(() => {
+            fullText += text[index];
+            setLoadingText(fullText);
+            index++;
+            if (index === text.length) {
+                clearInterval(interval);
+                setTimeout(() => setIsLoading(false), 1000);
+            }
+        }, 200);
     };
 
-
-
-    return (
-        <div className="product-container">
-            <h1>Your Products</h1>
-            {userItemsArray.length === 0 ? (
-                <div className="no-products-message">
-                    <h2>You have no products, would you like to create a new item?</h2>
-                    <NavLink to="/items/new">
-                        <button className="item-submit">Create New Item</button>
-                    </NavLink>
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">
+                    {loadingText}
                 </div>
-            ) : (
-                <div className="product-grid">
-                    {userItemsArray.map((item) => (
-                        <ProductCard item={item} key={item.id} />
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+            </div>
+        );
+    }
+
+    if (!isLoading) {
+        return (
+            <div className="product-container">
+                <h1>Your Products</h1>
+                {userItemsArray.length === 0 ? (
+                    <div className="no-products-message">
+                        <h2>You have no products, would you like to create a new item?</h2>
+                        <NavLink to="/items/new">
+                            <button className="item-submit">Create New Item</button>
+                        </NavLink>
+                    </div>
+                ) : (
+                    <div className="product-grid">
+                        {userItemsArray.map((item) => (
+                            <ProductCard item={item} key={item.id} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    }
 }
 
 

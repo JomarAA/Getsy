@@ -11,17 +11,12 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let sessionUser = useSelector((state) => state.session.user);
-    let cartItems = useSelector((state) => state.item.cart);
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
+    let cartItems = useSelector((state) => state.item.cart)
     const [newQuantities, setNewQuantities] = useState({});
-    const [image, setImage] = useState("");
-    const [id, setId] = useState("");
-    const [submitted, setSubmitted] = useState(false);
     const [quantityErrors, setQuantityErrors] = useState({});
     const cartArr = Object.values(cartItems);
     const [isLoading, setIsLoading] = useState(true);
+
 
 
 
@@ -77,13 +72,15 @@ const Cart = () => {
         return total.toFixed(2);
     }
 
+    const [loadingText, setLoadingText] = useState('');
+
     useEffect(() => {
         if (!sessionUser) {
             navigate("/");
         } else {
             dispatch(thunkGetCart())
                 .then(() => {
-                    setIsLoading(false);
+                    animateLoadingText("Loading.....");
                 })
                 .catch((error) => {
                     console.error('Failed to load cart items', error);
@@ -92,11 +89,25 @@ const Cart = () => {
         }
     }, [sessionUser, navigate, dispatch]);
 
+    const animateLoadingText = (text) => {
+        let fullText = '';
+        let index = 0;
+        const interval = setInterval(() => {
+            fullText += text[index];
+            setLoadingText(fullText);
+            index++;
+            if (index === text.length) {
+                clearInterval(interval);
+                setTimeout(() => setIsLoading(false), 300);
+            }
+        }, 75);
+    };
+
     if (isLoading) {
         return (
             <div className="loading-container">
                 <div className="typing-effect">
-                    Loading...
+                    {loadingText}
                 </div>
             </div>
         );
@@ -113,6 +124,8 @@ const Cart = () => {
         );
     }
 
+
+
     return (
         <div className="product-container">
             <h1>Cart</h1>
@@ -125,38 +138,40 @@ const Cart = () => {
                     </button>
                 </div>
             ) : (
-                <div className="product-grid">
+                <div className="cart-grid">
                     {cartArr.map((item) => (
-                        <div className="product-card" item={item} key={item.id}>
+                        <div className="one-cart" item={item} key={item.id}>
 
 
-                            <img id="item-img" src={item.image} alt="Item preview" />
+                            <img id="cart-img" src={item.image} alt="Item preview" />
+                            <div className="'cart-details">
 
-                            <div id='item-name'>Name:{item.item_name}</div>
-                            <div id='item-description'>Description:{item.item_description}</div>
-                            <div id='item-quantity'>Price:{item.item_price}</div>
+                                <div id='item-name'>Name:{item.item_name}</div>
+                                <div id='item-description'>Description:{item.item_description}</div>
+                                <div id='item-quantity'>Price:{item.item_price}</div>
 
-                            <div className="quantity-control">
-                                Quantity:
-                                <input
-                                    type="number"
-                                    min="1" // This prevents the input from going below 1
-                                    value={newQuantities[item.id] || ''}
-                                    onChange={(e) => {
-                                        const value = parseInt(e.target.value, 10);
-                                        setNewQuantities((prevQuantities) => ({
-                                            ...prevQuantities,
-                                            [item.id]: value >= 1 ? value : 1 // This enforces the minimum value of 1
-                                        }));
-                                    }}
-                                    placeholder={item.item_quantity}
-                                />
-                                <div className="error-message">
-                                    {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
-                                </div>
-                                <div className="product-button-container">
-                                    <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
-                                    <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                                <div className="quantity-control">
+                                    Quantity:
+                                    <input
+                                        type="number"
+                                        min="1" // This prevents the input from going below 1
+                                        value={newQuantities[item.id] || ''}
+                                        onChange={(e) => {
+                                            const value = parseInt(e.target.value, 10);
+                                            setNewQuantities((prevQuantities) => ({
+                                                ...prevQuantities,
+                                                [item.id]: value >= 1 ? value : 1 // This enforces the minimum value of 1
+                                            }));
+                                        }}
+                                        placeholder={item.item_quantity}
+                                    />
+                                    <div className="error-message">
+                                        {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
+                                    </div>
+                                    <div className="product-button-container">
+                                        <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
+                                        <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

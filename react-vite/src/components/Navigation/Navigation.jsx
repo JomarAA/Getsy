@@ -15,10 +15,6 @@ function Navigation() {
 
   const navigate = useNavigate()
 
-
-
-
-
   return (
     <>
       <ul className='navbar'>

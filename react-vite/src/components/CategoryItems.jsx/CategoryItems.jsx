@@ -1,33 +1,55 @@
 import { useState, useEffect } from "react";
-import { thunkGetAllItems, thunkGetItemsByCategory } from "../../redux/item";
+import { thunkGetItemsByCategory } from "../../redux/item";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./CategoryItems.css";
-import ItemCard from "../ItemCard/ItemCard"
-
+import ItemCard from "../ItemCard/ItemCard";
 
 function CategoryItems() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadingText, setLoadingText] = useState('');
 
-    const categoryHold = useParams()
-
-    const categoryArr = Object.values(categoryHold)
-
-    const category = categoryArr[0]
-
+    const categoryHold = useParams();
+    const categoryArr = Object.values(categoryHold);
+    const category = categoryArr[0];
     const dispatch = useDispatch();
-
+    let itemsArr = useSelector((state) => state.item.category);
 
     useEffect(() => {
-        dispatch(thunkGetItemsByCategory(category));
+        setIsLoading(true);
+        dispatch(thunkGetItemsByCategory(category))
+            .then(() => {
+                animateLoadingText("Loading...");
+            })
+            .catch((error) => {
+                console.error('Error loading items', error);
+                setIsLoading(false);
+            });
     }, [category, dispatch]);
 
-    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', category)
+    const animateLoadingText = (text) => {
+        let fullText = '';
+        let index = 0;
+        const interval = setInterval(() => {
+            fullText += text[index];
+            setLoadingText(fullText);
+            index++;
+            if (index === text.length) {
+                clearInterval(interval);
+                setTimeout(() => setIsLoading(false), 300);
+            }
+        }, 100);
+    };
 
-    let itemsArr = useSelector((state) => state.item.category)
-
-    // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', itemsArr)
-
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">
+                    {loadingText}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className='items-container'>
@@ -36,10 +58,11 @@ function CategoryItems() {
 
             <div className="items-grid">
                 {itemsArr.map(item => (
-                    <ItemCard item={item} key={item.id} />))}
+                    <ItemCard item={item} key={item.id} />
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default CategoryItems
+export default CategoryItems;

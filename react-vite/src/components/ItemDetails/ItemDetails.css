@@ -31,7 +31,7 @@
 .itemName ,
 .itemDescription {
   font-weight: normal;
-  font-size: x-large;
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -47,34 +47,48 @@
   width: 400px;
 }
 
-/* Add this new CSS for the dropdown container */
+
 .d {
-  position: relative; /* Set the dropdown container to relative positioning */
+  position: relative;
 
 }
 
-/* Style for the dropdown itself */
 .quantity-select {
-  width: 100%; /* Make the dropdown full width of its container */
-  -webkit-appearance: none; /* Remove default styling */
-  -moz-appearance: none; /* Remove default styling */
-  appearance: none; /* Remove default styling */
-  padding: 10px; /* Add some padding */
-  font-size: 16px; /* Increase font size */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 4px; /* Slightly round the corners */
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* Style for the 'Add to Cart' button */
 .product-button {
-  display: block; /* Make the button a block element */
-  width: 100%; /* Full width */
-  margin-top: 10px; /* Add space between the dropdown and the button */
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }
 
-/* Ensure the 'Add to Cart' button is below the dropdown */
 .item-actions {
   display: flex;
-  flex-direction: column; /* Stack them vertically */
-  align-items: flex-start; /* Align to start of flex container */
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.typing-effect {
+  border-right: 2px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
 }

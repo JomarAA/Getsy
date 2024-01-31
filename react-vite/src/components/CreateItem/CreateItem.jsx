@@ -13,6 +13,10 @@ const CreateItem = () => {
     useEffect(() => {
         if (!user) {
             navigate("/");
+        } else {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000);
         }
     }, [user, navigate]);
 
@@ -25,6 +29,7 @@ const CreateItem = () => {
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [loadingText, setLoadingText] = useState('Loading...');
 
     const CATEGORY_CHOICES = ['Accessories', 'Art & Collectibles', 'Baby', 'Bags & Purses', 'Bath & Beauty', 'Books, Movies & Music', 'Clothing', 'Craft Supplies & Tools', 'Electronics & Accessories', 'Gifts', 'Home & Living', 'Jewelry'];
 
@@ -85,19 +90,18 @@ const CreateItem = () => {
     }, [name, price, description, quantity, image, category])
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setHasSubmitted(true);
 
-        setHasSubmitted(true)
-
-        setIsLoading(true)
-
-        if (Object.values(errors).length) {
-            return
+        if (Object.keys(errors).length) {
+            setIsLoading(false);
+            return;
         }
 
+        setIsLoading(true);
+        setLoadingText('Submitting...'); // Update the loading text
 
-
-        const item = new FormData()
+        const item = new FormData();
 
         item.append("name", name)
         item.append("price", price)
@@ -106,19 +110,24 @@ const CreateItem = () => {
         item.append("quantity", quantity)
         item.append("category", category)
 
-        if (item && isLoading) {
-
-
-            const serverResponse = await dispatch(thunkCreateItem(item))
-
-            setHasSubmitted(false)
-
-            console.log('%c   LOOK HERE', 'color: red; font-size: 18px', hasSubmitted)
-
-            navigate(`/items/current`)
+        try {
+            const serverResponse = await dispatch(thunkCreateItem(item));
+            navigate(`/items/current`);
+        } catch (error) {
+            console.error('Submission error', error);
+        } finally {
+            setIsLoading(false);
         }
+    }
 
-
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">
+                    {loadingText}
+                </div>
+            </div>
+        );
     }
 
     return (

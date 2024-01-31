@@ -14,42 +14,54 @@ const ItemDetails = () => {
     const [quantity, setQuantity] = useState(1); // State to manage selected quantity
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate()
+    const [loadingText, setLoadingText] = useState('');
+
 
     useEffect(() => {
         setIsLoading(true);
-
         dispatch(thunkGetOneItem(id))
-            .then(() => setIsLoading(false))
+            .then(() => {
+                animateLoadingText("Loading...");
+            })
             .catch((error) => {
                 console.error('Failed to load item', error);
                 setIsLoading(false);
             });
-
     }, [dispatch, id]);
 
+    const animateLoadingText = (text) => {
+        let fullText = '';
+        let index = 0;
+        const interval = setInterval(() => {
+            fullText += text[index];
+            setLoadingText(fullText);
+            index++;
+            if (index === text.length) {
+                clearInterval(interval);
+                setTimeout(() => setIsLoading(false), 1000);
+            }
+        }, 200);
+    };
+
     const addToCart = () => {
-        dispatch(thunkAddToCart(id, { quantity })) // Pass the selected quantity to the action
+        dispatch(thunkAddToCart(id, { quantity }))
         // window.alert('Item added to cart');
         navigate("/cart")
     }
 
-    // Render loading state if still loading
+
     if (isLoading) {
         return (
             <div className="loading-container">
                 <div className="typing-effect">
-                    Loading...
+                    {loadingText}
                 </div>
             </div>
         );
     }
 
-    // Render null if no item
-    if (!item) {
-        return null;
-    }
 
-    // Component UI
+
     return (
         <div className="content-container">
             <div className='one_item_container' key={item.id}>
@@ -59,8 +71,8 @@ const ItemDetails = () => {
                 <div className="item-details">
                     <h3 className="itemQuantity">{item.quantity} Available</h3>
                     <h2 className="itemPrice">$ {item.price}</h2>
-                    <h3 className="itemName">{item.name}</h3>
-                    <h3 className="itemDescription">{item.description}</h3>
+                    <h3 className="itemName">Name: {item.name}</h3>
+                    <h3 className="itemDescription">Description: {item.description}</h3>
                     {sessionUser && item.sellerId !== sessionUser.id && (
                         <div className="item-actions">
                             <select
@@ -68,7 +80,8 @@ const ItemDetails = () => {
                                 value={quantity}
                                 onChange={(e) => setQuantity(Number(e.target.value))}
                             >
-                                {/* Generate dropdown options */}
+
+
                                 {[...Array(10)].map((_, index) => (
                                     <option key={index} value={index + 1}>
                                         {index + 1}
