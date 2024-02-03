@@ -199,11 +199,6 @@ justify-self: end;
 
 
 
-#root {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
 .storeLink-active {
   color: rgba(236, 160, 20, 0.889); /* Orange color */

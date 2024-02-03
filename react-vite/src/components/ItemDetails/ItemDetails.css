@@ -3,11 +3,12 @@
   justify-content: center;
 }
 
-.one_item_container {
+.item_detail_container {
   display: flex;
+  flex-direction: row;
   align-items:start;
   justify-content: space-evenly;
-  height: 700px;
+  height: 100%;
   text-align: center;
   width: 85%;
   background: white;

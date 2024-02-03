@@ -36,9 +36,10 @@ function CategoryItems() {
             index++;
             if (index === text.length) {
                 clearInterval(interval);
-                setTimeout(() => setIsLoading(false), 300);
+                // Remove setTimeout, update isLoading immediately after animation ends
+                setIsLoading(false);
             }
-        }, 100);
+        }, 1);
     };
 
     if (isLoading) {

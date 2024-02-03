@@ -41,11 +41,11 @@ export default function Items() {
             index++;
             if (index === text.length) {
                 clearInterval(interval);
-                setTimeout(() => setIsLoading(false), 1000);
+                // Remove setTimeout, update isLoading immediately after animation ends
+                setIsLoading(false);
             }
-        }, 200);
+        }, 1);
     };
-
 
     const CustomArrow = ({ className, style, onClick, arrowType }) => (
         <div

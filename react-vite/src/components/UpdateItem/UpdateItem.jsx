@@ -6,45 +6,54 @@ import { useNavigate } from "react-router-dom";
 import { thunkUpdateItem, thunkGetOneItem, getCurrentItems } from "../../redux/item";
 
 const UpdateItem = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     let sessionUser = useSelector((state) => state.session.user);
-    const { id } = useParams()
-    const item = useSelector((state) => state.item.oneItem)
-    const navigate = useNavigate()
+    const { id } = useParams();
+    const item = useSelector((state) => state.item.oneItem);
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
-    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
-
-    if (!sessionUser) {
-        navigate('/')
-    }
-
-
-    useEffect(() => {
-        if (id) {
-            dispatch(thunkGetOneItem(id))
-                .then(() => setIsLoading(false))
-        }
-    }, [dispatch, id]);
-
-    if (!item) {
-        return null
-    }
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [image, setImage] = useState('');
+    const [category, setCategory] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const CATEGORY_CHOICES = ['Accessories', 'Art & Collectibles', 'Baby', 'Bags & Purses', 'Bath & Beauty', 'Books, Movies & Music', 'Clothing', 'Craft Supplies & Tools', 'Electronics & Accessories', 'Gifts', 'Home & Living', 'Jewelry'];
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
-    const [quantity, setQuantity] = useState('')
-    const [image, setImage] = useState('')
-    const [category, setCategory] = useState('');
-
-    const [submittted, setSubmitted] = useState(false);
-    const [errors, setErrors] = useState({})
-
+    // Fetch the item when the component mounts or the id changes
     useEffect(() => {
-        const validationErrors = {}
+        if (!sessionUser) {
+            navigate('/');
+        } else if (id) {
+            dispatch(thunkGetOneItem(id))
+                .then(() => setIsLoading(false))
+                .catch((error) => {
+                    console.error('Failed to load the item', error);
+                    setIsLoading(false);
+                });
+        }
+    }, [dispatch, id, navigate, sessionUser]);
+
+    // Populate the form fields when the item is loaded
+    useEffect(() => {
+        if (item) {
+            setName(item.name);
+            setDescription(item.description);
+            setPrice(item.price);
+            setQuantity(item.quantity);
+            setImage(item.image);
+            setCategory(item.category);
+            setIsLoading(false); // Set loading to false when item data is populated
+        }
+    }, [item]);
+
+    // Validate form fields whenever they change
+    useEffect(() => {
+        const validationErrors = {};
 
         if (image && image.name) {
             const validExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
@@ -90,50 +99,48 @@ const UpdateItem = () => {
             validationErrors.quantity = "Invalid quantity input";
         }
 
-        setErrors(validationErrors)
-
-    }, [name, price, description, quantity, image])
-
-    useEffect(() => {
-        if (item && isLoading) {
-            setName(item.name)
-            setDescription(item.description)
-            setPrice(item.price)
-            setQuantity(item.quantity)
-            setImage(item.image)
-            setCategory(item.category);
-        }
-    })
+        setErrors(validationErrors);
+    }, [name, price, description, quantity, image, category]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true);
 
-        setSubmitted(true)
-
-        if (Object.values(errors).length) {
-            return
+        if (Object.keys(errors).length) {
+            return;
         }
 
-        const item = new FormData()
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("description", description);
+        formData.append("image", image);
+        formData.append("quantity", quantity);
+        formData.append("category", category);
 
-        item.append("name", name)
-        item.append("price", price)
-        item.append("description", description)
-        item.append("image", image)
-        item.append("quantity", quantity)
-        item.append("category", category)
+        try {
+            await dispatch(thunkUpdateItem(id, formData));
+            await dispatch(getCurrentItems());
+            navigate(`/items/current`);
+        } catch (error) {
+            console.error('Error updating item', error);
+        } finally {
+            setSubmitted(false);
+        }
+    };
 
-        // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', item)
-
-        let newItem = await dispatch(thunkUpdateItem(id, item))
-
-        setSubmitted(false)
-
-        await dispatch(getCurrentItems())
-
-
-        navigate(`/items/current`)
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="typing-effect">Loading...</div>
+            </div>
+        );
     }
+
+    if (!item) {
+        return null;
+    }
+
 
     return (
 
@@ -144,47 +151,44 @@ const UpdateItem = () => {
                 <div className='display-components'>
                     <img className="item-detail-img" src={item.image} />
                 </div>
-                <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-item-form">
+                <form onSubmit={handleSubmit} encType="multipart/form-data" className="update-item-form">
                     <div id="image-input">
                         <div className="label-and-error">
-                            <label htmlFor="image">image</label>
+                            <label htmlFor="image">Image</label>
+                            {submitted && errors.image && (
+                                <span className="error-message">{errors.image}</span>
+                            )}
                         </div>
                         <input
                             id="image"
                             type="file"
-                            onChange={(e) => {
-                                setImage(e.target.files[0])
-                            }}
-                            placeholder='image'
+                            onChange={(e) => setImage(e.target.files[0])}
+                            placeholder='Image'
                         />
                     </div>
-                    <div className="errors">
-                        {submittted && errors.image && (
-                            <span className="error-message">{errors.image}</span>
-                        )}
-                    </div>
+
                     <div id="name-input">
                         <div className="label-and-error">
-                            <label htmlFor="name">name</label>
+                            <label htmlFor="name">Name</label>
+                            {submitted && errors.name && (
+                                <span className="error-message">{errors.name}</span>
+                            )}
                         </div>
                         <input
                             id="name"
                             type="text"
                             value={name}
-                            onChange={(e) => {
-                                setName(e.target.value)
-                            }}
+                            onChange={(e) => setName(e.target.value)}
                             placeholder='Name'
                         />
                     </div>
-                    <div className="errors">
-                        {submittted && errors.name && (
-                            <span className="error-message">{errors.name}</span>
-                        )}
-                    </div>
+
                     <div id="category-input">
                         <div className="label-and-error">
                             <label htmlFor="category">Category</label>
+                            {submitted && errors.category && (
+                                <span className="error-message">{errors.category}</span>
+                            )}
                         </div>
                         <select
                             id="category"
@@ -196,64 +200,56 @@ const UpdateItem = () => {
                             ))}
                         </select>
                     </div>
+
                     <div id="description-input">
                         <div className="label-and-error">
-                            <label htmlFor="description">Decription</label>
+                            <label htmlFor="description">Description</label>
+                            {submitted && errors.description && (
+                                <span className="error-message">{errors.description}</span>
+                            )}
                         </div>
                         <input
                             id="description"
                             type="text"
                             value={description}
-                            onChange={(e) => {
-                                setDescription(e.target.value)
-                            }}
-                            placeholder='description'
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder='Description'
                         />
                     </div>
-                    <div className="errors">
-                        <div className="errors">
-                            {submittted && errors.description && (
-                                <span className="error-message">{errors.description}</span>
+
+                    <div id="price-input">
+                        <div className="label-and-error">
+                            <label htmlFor="price">Price</label>
+                            {submitted && errors.price && (
+                                <span className="error-message">{errors.price}</span>
                             )}
-                            <div id="price-input">
-                            </div>
-                            <div className="label-and-error">
-                                <label htmlFor="price">Price</label>
-                            </div>
-                            <input
-                                id="price"
-                                type="number"
-                                value={price}
-                                onChange={(e) => {
-                                    setPrice(e.target.value)
-                                }}
-                                placeholder='Price'
-                            />
                         </div>
+                        <input
+                            id="price"
+                            type="number"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            placeholder='Price'
+                        />
                     </div>
-                    {submittted && errors.price && (
-                        <span className="error-message">{errors.price}</span>
-                    )}
+
                     <div id="quantity-input">
                         <div className="label-and-error">
                             <label htmlFor="quantity">Quantity</label>
+                            {submitted && errors.quantity && (
+                                <span className="error-message">{errors.quantity}</span>
+                            )}
                         </div>
                         <input
                             id="quantity"
                             type="number"
                             value={quantity}
-                            onChange={(e) => {
-                                setQuantity(e.target.value)
-                            }}
+                            onChange={(e) => setQuantity(e.target.value)}
                             placeholder='Quantity'
                         />
                     </div>
+
                     <button className="item-submit">Submit</button>
-                    <div className="errors">
-                        {submittted && errors.quantity && (
-                            <span className="error-message">{errors.quantity}</span>
-                        )}
-                    </div>
                 </form>
             </div>
         </div>

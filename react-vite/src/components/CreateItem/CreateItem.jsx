@@ -16,7 +16,7 @@ const CreateItem = () => {
         } else {
             setTimeout(() => {
                 setIsLoading(false);
-            }, 2000);
+            }, 1);
         }
     }, [user, navigate]);
 
@@ -134,7 +134,7 @@ const CreateItem = () => {
         <div className='create-item-wrapper'>
             <div className="'create-item-container">
                 <h2>Create a new product to sell</h2>
-                <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-item-form">
+                <form onSubmit={handleSubmit} encType="multipart/form-data" className="update-item-form">
 
                     <div className="errors">
                         {hasSubmitted && errors.name && (

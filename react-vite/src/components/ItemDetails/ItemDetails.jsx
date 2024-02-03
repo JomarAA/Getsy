@@ -38,9 +38,10 @@ const ItemDetails = () => {
             index++;
             if (index === text.length) {
                 clearInterval(interval);
-                setTimeout(() => setIsLoading(false), 1000);
+                // Remove setTimeout, update isLoading immediately after animation ends
+                setIsLoading(false);
             }
-        }, 200);
+        }, 1);
     };
 
     const addToCart = () => {
@@ -64,7 +65,7 @@ const ItemDetails = () => {
 
     return (
         <div className="content-container">
-            <div className='one_item_container' key={item.id}>
+            <div className='item_detail_container' key={item.id}>
 
                 <img id='item-detail-img' src={item.image} alt='Item preview' />
 
