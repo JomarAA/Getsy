@@ -39,7 +39,39 @@
     background-color: rgba(236, 160, 20, 0.889);;
   }
 
-  .product-button-container {
+
+  .one-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    background: white;
+    margin: 0 50px;
+    border: 1px solid #ccc; /* Add a border */
+    padding: 5px;
+    border-radius: 1%;
+  }
+
+  .delete-product {
+    list-style: none;
     display: flex;
-    justify-content: space-around;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .update-product {
+    list-style: none;
+    display: flex;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-buttons-container {
+    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 15px;
   }

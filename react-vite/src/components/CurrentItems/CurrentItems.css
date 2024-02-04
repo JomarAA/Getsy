@@ -1,11 +1,14 @@
-.product-container {
+.your-product-container {
     text-align: center;
     padding: 20px;
+    margin: 0 150px;
   }
 
   .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     gap: 20px;
     justify-content: center;
+    margin: 0 50px
   }

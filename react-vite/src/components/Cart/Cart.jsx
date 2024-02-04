@@ -6,6 +6,8 @@ import { thunkClearCart, thunkUpdateCart, thunkRemoveFromCart } from "../../redu
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import DeleteCartItemModal from "../DeleteCartItemModal/DeleteCartItemModal";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -146,7 +148,7 @@ const Cart = () => {
 
 
                                 <img id="cart-img" src={item.image} alt="Item preview" />
-                                <div className="'cart-details">
+                                <div className="cart-details">
 
                                     <div id='item-name'>Name:{item.item_name}</div>
                                     <div id='item-description'>Description:{item.item_description}</div>
@@ -170,9 +172,15 @@ const Cart = () => {
                                         <div className="error-message">
                                             {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
                                         </div>
-                                        <div className="product-button-container">
-                                            <button onClick={() => handleUpdate(item.id)} className="product-button">Update Item</button>
-                                            <button className='product-button' onClick={() => handleDelete(item.id)}>Delete Item</button>
+                                        <div className="cart-button-container">
+                                            <div className="update-cart-item" onClick={() => handleUpdate(item.id)}><i className="fa-solid fa-pen-to-square"></i>Update Item</div>
+                                            <div className="delete-product">
+
+                                                <OpenModalMenuItem
+                                                    itemText={(<><i className="fa-solid fa-trash-can"></i> Delete</>)}
+                                                    modalComponent={<DeleteCartItemModal id={item.id} />}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

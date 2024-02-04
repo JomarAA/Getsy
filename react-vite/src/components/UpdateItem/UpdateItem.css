@@ -32,12 +32,6 @@
     background-color: rgba(236, 160, 20, 0.889);;
   }
 
-  .product-button-container {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 2px;
-  }
-
   @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
@@ -157,7 +151,7 @@
 
 /* Apply to the image to make it fit nicely above the form */
 .item-detail-img {
-  max-width: 80%; /* Make sure image is not too large */
+  max-width: 100%; /* Make sure image is not too large */
   border-radius: 10px; /* Optional: for rounded corners */
   margin-bottom: 20px; /* space below the image */
 }

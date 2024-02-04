@@ -63,7 +63,7 @@ const CurrentItems = () => {
 
     if (!isLoading) {
         return (
-            <div className="product-container">
+            <div className="your-product-container">
                 <h1>Your Products</h1>
                 {userItemsArray.length === 0 ? (
                     <div className="no-products-message">
