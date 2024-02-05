@@ -66,7 +66,7 @@ Getsy is a user-friendly e-commerce platform inspired by [Etsy](https://www.etsy
 
 ### Home Page
 
-<img src='./images/Home.png'>
+<img src='./images/home.png'>
 
 ### Item Details Page
 
