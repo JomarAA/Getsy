@@ -50,7 +50,7 @@ class Item(db.Model):
     image = db.Column(db.String(250), nullable=False)
     sellerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(3000), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.TIMESTAMP, default=datetime.now())
