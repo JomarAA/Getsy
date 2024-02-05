@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import '../DeleteItemModal/DeleteItemModel.css'
 import { thunkRemoveFromCart } from '../../redux/cart';
+import { thunkGetCart } from '../../redux/item';
 
 
 const DeleteCartItemModal = ({ id }) => {
@@ -13,7 +14,6 @@ const DeleteCartItemModal = ({ id }) => {
         const result = await dispatch(thunkRemoveFromCart(id));
         console.log(result);
 
-        await dispatch(thunkClearCart());
         await dispatch(thunkGetCart())
         closeModal()
     };

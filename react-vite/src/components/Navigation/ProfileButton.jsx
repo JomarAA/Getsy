@@ -41,7 +41,7 @@ function ProfileButton() {
   return (
     <>
       <button onClick={toggleMenu} className="profile-button">
-        <i className="fa-solid fa-user" style={{ color: "#e6bc47" }} />
+        <i className="fas fa-user-circle" style={{ color: "#e6bc47" }} />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
@@ -63,6 +63,7 @@ function ProfileButton() {
                   onItemClick={closeMenu}
                   modalComponent={<LoginFormModal />}
                 />
+                <hr></hr>
                 <OpenModalMenuItem
                   itemText={<span className="profile-text">Sign Up</span>}
                   onItemClick={closeMenu}

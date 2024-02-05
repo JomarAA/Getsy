@@ -86,7 +86,7 @@ function SignupFormModal() {
             type="text"
             value={firstname}
             onChange={(e) => setFirstname(e.target.value)}
-            required
+
           />
           {errors.firstname && <p className="error">{errors.firstname}</p>}
           <label>Last Name</label>
@@ -94,7 +94,7 @@ function SignupFormModal() {
             type="text"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
-            required
+
           />
           {errors.lastname && <p className="error">{errors.lastname}</p>}
           <label>Email</label>
@@ -102,7 +102,7 @@ function SignupFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+
           />
           {errors.email && <p className="error">{errors.email}</p>}
           <label>Username</label>
@@ -110,7 +110,7 @@ function SignupFormModal() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+
           />
           {errors.username && <p className="error">{errors.username}</p>}
           <label>Password</label>
@@ -118,7 +118,7 @@ function SignupFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+
           />
           {errors.password && <p className="error">{errors.password}</p>}
           <label>Confirm Password</label>
@@ -126,21 +126,14 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+
           />
           {errors.confirmPassword && (
             <p className="error">{errors.confirmPassword}</p>
           )}
           <button
             type="submit"
-            disabled={
-              !firstname ||
-              !lastname ||
-              !email ||
-              !username ||
-              !password ||
-              !confirmPassword
-            }
+
           >
             Sign Up
           </button>

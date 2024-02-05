@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import StoreButton from "./ShopButton";
-
+import AboutMe from "./AboutMe";
 
 function Navigation() {
 
@@ -35,11 +35,10 @@ function Navigation() {
             </>
           )}
           <ProfileButton />
+          <AboutMe />
         </div>
       </ul>
-      {/* <footer>
-        Developed by: <a href="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className="linkedin-link">Jomar Yanos</a>
-      </footer> */}
+
     </>
   );
 }

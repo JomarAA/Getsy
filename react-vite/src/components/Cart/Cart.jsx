@@ -64,7 +64,6 @@ const Cart = () => {
 
     }
 
-    console.log('%c   LOOK HERE', 'color: red; font-size: 18px', cartArr)
 
     const calculateTotal = () => {
         let total = 0;
@@ -150,9 +149,9 @@ const Cart = () => {
                                 <img id="cart-img" src={item.image} alt="Item preview" />
                                 <div className="cart-details">
 
-                                    <div id='item-name'>Name:{item.item_name}</div>
-                                    <div id='item-description'>Description:{item.item_description}</div>
-                                    <div id='item-quantity'>Price:{item.item_price}</div>
+                                    <div id='item-name'>Name: {item.item_name}</div>
+                                    <div id='item-description'>Description: {item.item_description}</div>
+                                    <div id='item-quantity'>Price: {item.item_price}</div>
 
                                     <div className="quantity-control">
                                         Quantity:

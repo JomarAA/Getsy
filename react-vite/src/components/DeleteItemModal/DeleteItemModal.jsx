@@ -8,12 +8,7 @@ const DeleteItemModal = ({ id }) => {
     const { closeModal } = useModal()
     const dispatch = useDispatch()
 
-    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', id)
-
-
     const itemState = useSelector((state) => state.item.userItems)
-
-    console.log('%c   LOOK HERE', 'color: red; font-size: 18px', itemState)
 
     const handleDelete = async (e) => {
         e.preventDefault()

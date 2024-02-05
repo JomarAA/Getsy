@@ -23,7 +23,6 @@ export default function CartCard({ item }) {
         const quantity = {
             "quantity": newQuantities[id]
         }
-        console.log('%c   LOOK HERE', 'color: red; font-size: 18px', selectedItem);
         const serverResponse = await dispatch(thunkUpdateCart(id, quantity));
         if (serverResponse) {
             await dispatch(thunkGetCart());
@@ -31,8 +30,6 @@ export default function CartCard({ item }) {
         }
     }
 
-
-    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', item)
 
     return (
         <div className="product-card">

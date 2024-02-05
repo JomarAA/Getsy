@@ -164,4 +164,9 @@
 align-items: center;
 justify-content: center;
 margin-top: 25px;
+margin-bottom: 7px;
+}
+
+.update-cart-item {
+  cursor: pointer;
 }

@@ -104,7 +104,7 @@ const CreateItem = () => {
         const item = new FormData();
 
         item.append("name", name)
-        item.append("price", price)
+        item.append("price", parseFloat(price))
         item.append("description", description)
         item.append("image", image)
         item.append("quantity", quantity)
@@ -182,7 +182,7 @@ const CreateItem = () => {
                     </select>
                     <input
                         id="price-input"
-                        type='text' // Use text to ensure users can enter decimal points
+                        type='number' // Use text to ensure users can enter decimal points
                         placeholder='Set a price for your product'
                         onChange={e => setPrice(e.target.value)} // Keep as string during input
 

@@ -65,7 +65,6 @@ const UpdateItem = () => {
                 validationErrors.image = "File does not have an approved extension: jpg, jpeg, png, pdf, gif."
             }
         }
-        // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', image.name)
 
         if (!name) {
             validationErrors.name = "Please enter a name.";
