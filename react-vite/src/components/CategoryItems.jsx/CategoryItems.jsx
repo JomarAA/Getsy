@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./CategoryItems.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { NavLink } from "react-router-dom";
 
 function CategoryItems() {
     const [isLoading, setIsLoading] = useState(true);
@@ -53,16 +54,24 @@ function CategoryItems() {
     }
 
     return (
-        <div className='items-container'>
-            <h1>Welcome to Getsy!</h1>
-            <h2>Get what you want and what you need, all in one place, where creativity meets convenience.</h2>
+        <>
+            <div className='items-container'>
+                <h1>Welcome to Getsy!</h1>
+                <h2>Get what you want and what you need, all in one place, where creativity meets convenience.</h2>
 
-            <div className="items-grid">
-                {itemsArr.map(item => (
-                    <ItemCard item={item} key={item.id} />
-                ))}
+                <div className="items-grid">
+                    {itemsArr.map(item => (
+                        <ItemCard item={item} key={item.id} />
+                    ))}
+                </div>
             </div>
-        </div>
+            <footer>
+                <li> Developed by: Jomar Yanos</li>
+                <li><NavLink to="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className='navLink'>Linkdin</NavLink> </li>
+                <li><NavLink to="https://github.com/JomarAA" className='navLink'>Github</NavLink></li>
+
+            </footer>
+        </>
     );
 }
 

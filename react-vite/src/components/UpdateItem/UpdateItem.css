@@ -54,11 +54,6 @@
     color: rgba(236, 160, 20, 0.889)
   }
 
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 1200px;
-  }
 
   #category-input {
     margin-bottom: 7px;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import './CurrentItems.css'
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import { getCurrentItems, thunkDeleteItem } from "../../redux/item";
+import { getCurrentItems } from "../../redux/item";
 import ProductCard from "../ProductsCard/ProductCard";
 
 const CurrentItems = () => {
@@ -63,23 +63,31 @@ const CurrentItems = () => {
 
     if (!isLoading) {
         return (
-            <div className="your-product-container">
-                <h1>Your Products</h1>
-                {userItemsArray.length === 0 ? (
-                    <div className="no-products-message">
-                        <h2>You have no products, would you like to create a new item?</h2>
-                        <NavLink to="/items/new">
-                            <button className="item-submit">Create New Item</button>
-                        </NavLink>
-                    </div>
-                ) : (
-                    <div className="product-grid">
-                        {userItemsArray.map((item) => (
-                            <ProductCard item={item} key={item.id} />
-                        ))}
-                    </div>
-                )}
-            </div>
+            <>
+                <div className="your-product-container">
+                    <h1>Your Products</h1>
+                    {userItemsArray.length === 0 ? (
+                        <div className="no-products-message">
+                            <h2>You have no products, would you like to create a new item?</h2>
+                            <NavLink to="/items/new">
+                                <button className="item-submit">Create New Item</button>
+                            </NavLink>
+                        </div>
+                    ) : (
+                        <div className="product-grid">
+                            {userItemsArray.map((item) => (
+                                <ProductCard item={item} key={item.id} />
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <footer>
+                    <li> Developed by: Jomar Yanos</li>
+                    <li><NavLink to="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className='navLink'>Linkdin</NavLink> </li>
+                    <li><NavLink to="https://github.com/JomarAA" className='navLink'>Github</NavLink></li>
+
+                </footer>
+            </>
         );
     }
 }

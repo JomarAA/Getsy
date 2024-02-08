@@ -35,9 +35,9 @@ function Navigation() {
             </>
           )}
           <ProfileButton />
-          <AboutMe />
         </div>
       </ul>
+
 
     </>
   );

@@ -92,10 +92,7 @@ export const thunkGetCart = () => async (dispatch) => {
         dispatch(loadCart(cartItems));
         return cartItems
     } else {
-        console.log('status code:', res.status)
-        console.log("GET error message")
         const error = await res.json();
-        console.log('error', error)
         return error;
     }
 }
@@ -111,10 +108,7 @@ export const thunkCreateItem = (item) => async (dispatch) => {
         dispatch(createItem(newItem))
         return
     } else {
-        console.log('status code:', res.status)
-        console.log("POST error message")
         const error = await res.json();
-        console.log('error', error)
         return error;
       }
 }
@@ -136,9 +130,7 @@ export const thunkUpdateItem = (id, item) => async (dispatch) => {
 
 
 export const thunkGetAllItems = () => async (dispatch) => {
-    console.log("before fetch")
     const res = await fetch("/api/items");
-    console.log("after fetch")
     if (res.ok) {
         const allItems = await res.json();
         dispatch(loadAllItems(allItems))
@@ -149,9 +141,7 @@ export const thunkGetAllItems = () => async (dispatch) => {
 }
 
 export const thunkGetOneItem = (id) => async (dispatch) => {
-    console.log("before fetch")
     const res = await fetch(`/api/items/${id}`);
-    console.log("after fetch")
 
     if (res.ok) {
         const itemDetails = await res.json()
@@ -164,10 +154,7 @@ export const thunkGetOneItem = (id) => async (dispatch) => {
 
 
 export const getCurrentItems = () => async (dispatch) => {
-
-    console.log("before fetch")
     const res = await fetch(`/api/items/current`);
-    console.log("after fetch")
        if (res.ok) {
 
            const items = await res.json();
@@ -187,7 +174,6 @@ const initialState = {
 
 
 const itemsReducer = (state = initialState, action) => {
-    // console.log("%c   LOOK HERE", "color: purple; font-size: 18px", action)
     switch (action.type) {
         case LOAD_ALL_ITEMS: {
             let newState = {...state, allItems:{...action.allItems}};

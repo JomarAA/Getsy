@@ -12,7 +12,6 @@ const DeleteCartItemModal = ({ id }) => {
     const handleDelete = async (e) => {
         e.preventDefault()
         const result = await dispatch(thunkRemoveFromCart(id));
-        console.log(result);
 
         await dispatch(thunkGetCart())
         closeModal()

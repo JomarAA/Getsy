@@ -48,7 +48,6 @@ export const thunkUpdateCart = (id, quantity) => async (dispatch) => {
     dispatch(updateCart(id, updatedCartItem))
     return updatedCartItem
   } else {
-       console.log('status code:', res.status)
         console.log("POST error message")
         const error = await res.json();
         console.log('error', error)

@@ -1,8 +1,9 @@
 import "./CreateItem.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkCreateItem, thunkGetAllItems, thunkGetOneItem, getCurrentItems } from "../../redux/item";
+import { thunkCreateItem } from "../../redux/item";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const CreateItem = () => {
     const dispatch = useDispatch()
@@ -131,96 +132,104 @@ const CreateItem = () => {
     }
 
     return (
-        <div className='create-item-wrapper'>
-            <div className="'create-item-container">
-                <h2>Create a new product to sell</h2>
-                <form onSubmit={handleSubmit} encType="multipart/form-data" className="update-item-form">
+        <>
+            <div className='create-item-wrapper'>
+                <div className="'create-item-container">
+                    <h2>Create a new product to sell</h2>
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="update-item-form">
 
-                    <div className="errors">
-                        {hasSubmitted && errors.name && (
-                            <span className="error-message">{errors.name}</span>
-                        )}
-                    </div>
-                    <input
-                        id="name-input"
-                        type='text'
-                        placeholder='What is your product called'
-                        onChange={e => setName(e.target.value)}
-                        value={name}
-                    />
-                    <div className="errors">
-                        {hasSubmitted && errors.description && (
-                            <span className="error-message">{errors.description}</span>
-                        )}
-                    </div>
-                    <input
-                        id="description-input"
-                        type='text'
-                        placeholder='Describe your product'
-                        onChange={e => setDescription(e.target.value)}
-                        value={description}
-                    />
-                    <div className="errors">
-                        {hasSubmitted && errors.price && (
-                            <span className="error-message">{errors.price}</span>
-                        )}
-                    </div>
-                    <div className="errors">
-                        {hasSubmitted && errors.category && (
-                            <span className="error-message">{errors.category}</span>
-                        )}
-                    </div>
-                    <select
-                        id="category-input"
-                        value={category}
-                        onChange={e => setCategory(e.target.value)}
-                    >
-                        <option value="">Select a Category</option>
-                        {CATEGORY_CHOICES.map((cat, index) => (
-                            <option key={index} value={cat}>{cat}</option>
-                        ))}
-                    </select>
-                    <input
-                        id="price-input"
-                        type='number' // Use text to ensure users can enter decimal points
-                        placeholder='Set a price for your product'
-                        onChange={e => setPrice(e.target.value)} // Keep as string during input
-
-
-                        value={price}
-                    />
-
-                    <div className="errors">
-                        {hasSubmitted && errors.quantity && (
-                            <span className="error-message">{errors.quantity}</span>
-                        )}
-                    </div>
-                    <input
-                        id="quantity-input"
-                        className="hidden"
-                        type='number'
-                        placeholder='Set the quantity available for sale'
-                        onChange={e => setQuantity(e.target.value)}
-                        value={quantity}
-                    />
-                    <label className="image-input">
-                        <h3 className="h4-text">Upload images of your product</h3>
                         <div className="errors">
-                            {hasSubmitted && errors.image && (
-                                <span className="error-message">{errors.image}</span>
-                            )}
+                            <span className={hasSubmitted && errors.name ? "error-message" : "error-placeholder2"}>
+                                {hasSubmitted && errors.name ? errors.name : ""}
+                            </span>
                         </div>
                         <input
-                            className="inner-input"
-                            type="file"
-                            onChange={e => setImage(e.target.files[0])}
+                            id="name-input"
+                            type='text'
+                            placeholder='What is your product called'
+                            onChange={e => setName(e.target.value)}
+                            value={name}
                         />
-                        <button className="item-submit">Submit</button>
-                    </label>
-                </form>
+                        <div className="errors">
+                            <span className={hasSubmitted && errors.description ? "error-message" : "error-placeholder2"}>
+                                {hasSubmitted && errors.description ? errors.description : ""}
+                            </span>
+                        </div>
+                        <input
+                            id="description-input"
+                            type='text'
+                            placeholder='Describe your product'
+                            onChange={e => setDescription(e.target.value)}
+                            value={description}
+                        />
+                        <div className="errors">
+                            <span className={hasSubmitted && errors.price ? "error-message" : "error-placeholder2"}>
+                                {hasSubmitted && errors.price ? errors.price : ""}
+                            </span>
+                        </div>
+                        <select
+                            id="category-input"
+                            value={category}
+                            onChange={e => setCategory(e.target.value)}
+                        >
+                            <option value="">Select a Category</option>
+                            {CATEGORY_CHOICES.map((cat, index) => (
+                                <option key={index} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                        <div className="errors">
+                            <span className={hasSubmitted && errors.category ? "error-message" : "error-placeholder2"}>
+                                {hasSubmitted && errors.category ? errors.category : ""}
+                            </span>
+                        </div>
+                        <input
+                            id="price-input"
+                            type='number' // Use text to ensure users can enter decimal points
+                            placeholder='Set a price for your product'
+                            onChange={e => setPrice(e.target.value)} // Keep as string during input
 
+
+                            value={price}
+                        />
+
+                        <div className="errors">
+                            <span className={hasSubmitted && errors.quantity ? "error-message" : "error-placeholder2"}>
+                                {hasSubmitted && errors.quantity ? errors.quantity : ""}
+                            </span>
+                        </div>
+                        <input
+                            id="quantity-input"
+                            className="hidden"
+                            type='number'
+                            placeholder='Set the quantity available for sale'
+                            onChange={e => setQuantity(e.target.value)}
+                            value={quantity}
+                        />
+                        <label className="image-input">
+                            <h3 className="h4-text">Upload images of your product</h3>
+                            <div className="errors">
+                                <span className={hasSubmitted && errors.image ? "error-message" : "error-placeholder2"}>
+                                    {hasSubmitted && errors.image ? errors.image : ""}
+                                </span>
+                            </div>
+                            <input
+                                className="inner-input"
+                                type="file"
+                                onChange={e => setImage(e.target.files[0])}
+                            />
+                            <button className="item-submit">Submit</button>
+                        </label>
+                    </form>
+
+                </div>
             </div>
-        </div>
+            <footer>
+                <li> Developed by: Jomar Yanos</li>
+                <li><NavLink to="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className='navLink'>Linkdin</NavLink> </li>
+                <li><NavLink to="https://github.com/JomarAA" className='navLink'>Github</NavLink></li>
+
+            </footer>
+        </>
     )
 }
 

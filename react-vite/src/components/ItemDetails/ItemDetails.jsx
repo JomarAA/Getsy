@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneItem } from "../../redux/item";
 import { useNavigate, useParams } from "react-router-dom";
 import { thunkAddToCart } from "../../redux/cart";
-import { Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const ItemDetails = () => {
     const dispatch = useDispatch();
@@ -64,39 +64,47 @@ const ItemDetails = () => {
 
 
     return (
-        <div className="content-container">
-            <div className='item_detail_container' key={item.id}>
+        <>
+            <div className="content-container">
+                <div className='item_detail_container' key={item.id}>
 
-                <img id='item-detail-img' src={item.image} alt='Item preview' />
+                    <img id='item-detail-img' src={item.image} alt='Item preview' />
 
-                <div className="item-details">
-                    <h3 className="itemQuantity">{item.quantity} Available</h3>
-                    <h2 className="itemPrice">$ {item.price}</h2>
-                    <h3 className="itemName">Name: {item.name}</h3>
-                    <h3 className="itemDescription">Description: {item.description}</h3>
-                    {sessionUser && item.sellerId !== sessionUser.id && (
-                        <div className="item-actions">
-                            <select
-                                className="quantity-select"
-                                value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
-                            >
+                    <div className="item-details">
+                        <h3 className="itemQuantity">{item.quantity} Available</h3>
+                        <h2 className="itemPrice">$ {item.price}</h2>
+                        <h3 className="itemName">Name: {item.name}</h3>
+                        <h3 className="itemDescription">Description: {item.description}</h3>
+                        {sessionUser && item.sellerId !== sessionUser.id && (
+                            <div className="item-actions">
+                                <select
+                                    className="quantity-select"
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(Number(e.target.value))}
+                                >
 
 
-                                {[...Array(10)].map((_, index) => (
-                                    <option key={index} value={index + 1}>
-                                        {index + 1}
-                                    </option>
-                                ))}
-                            </select>
-                            <button className="product-button" onClick={addToCart}>
-                                Add to Cart
-                            </button>
-                        </div>
-                    )}
+                                    {[...Array(10)].map((_, index) => (
+                                        <option key={index} value={index + 1}>
+                                            {index + 1}
+                                        </option>
+                                    ))}
+                                </select>
+                                <button className="product-button" onClick={addToCart}>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+            <footer className="footer-2">
+                <li> Developed by: Jomar Yanos</li>
+                <li><NavLink to="https://www.linkedin.com/in/jomar-yanos-0a12b1233/" className='navLink'>Linkdin</NavLink> </li>
+                <li><NavLink to="https://github.com/JomarAA" className='navLink'>Github</NavLink></li>
+
+            </footer>
+        </>
     );
 }
 

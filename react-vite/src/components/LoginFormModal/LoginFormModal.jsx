@@ -52,7 +52,7 @@ function LoginFormModal() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          {errors.email && <p className="error">*{errors.email}</p>}
+          <div className={`error ${!errors.email ? 'error-placeholder' : ''}`}>{errors.email}</div>
           <label>
             Password
           </label>
@@ -62,7 +62,7 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {errors.password && <p className="error">*{errors.password}</p>}
+          <div className={`error ${!errors.password ? 'error-placeholder' : ''}`}>{errors.password}</div>
           <button type="submit" disabled={!email || !password}>Log In</button>
         </form>
         <button className="product-button" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>

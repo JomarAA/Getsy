@@ -13,7 +13,6 @@ const DeleteItemModal = ({ id }) => {
     const handleDelete = async (e) => {
         e.preventDefault()
         const result = await dispatch(thunkDeleteItem(id));
-        console.log(result);
 
         await dispatch(getCurrentItems())
         closeModal()

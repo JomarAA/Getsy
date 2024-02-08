@@ -105,3 +105,9 @@
 .create-item-form .item-submit:hover {
   background-color: rgba(236, 160, 20, 0.889);/
 }
+
+.error-placeholder2 {
+  visibility: hidden;
+  height: 18px; /* Or the height of your typical error message */
+  display: block; /* Ensure it takes up space even when empty */
+}

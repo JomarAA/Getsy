@@ -56,7 +56,7 @@ const UpdateItem = () => {
         const validationErrors = {};
 
         if (image && image.name) {
-            const validExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
+            const validExtensions = ['.jpeg', '.png'];
             const imageExtension = validExtensions.find(extension =>
                 image.name.toLowerCase().endsWith(extension)
             );
@@ -155,7 +155,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="image">Image</label>
                             {submitted && errors.image && (
-                                <span className="error-message">{errors.image}</span>
+                                <span className="error-message"> {errors.image}</span>
                             )}
                         </div>
                         <input
@@ -170,7 +170,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="name">Name</label>
                             {submitted && errors.name && (
-                                <span className="error-message">{errors.name}</span>
+                                <span className="error-message"> {errors.name}</span>
                             )}
                         </div>
                         <input
@@ -186,7 +186,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="category">Category</label>
                             {submitted && errors.category && (
-                                <span className="error-message">{errors.category}</span>
+                                <span className="error-message"> {errors.category}</span>
                             )}
                         </div>
                         <select
@@ -204,7 +204,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="description">Description</label>
                             {submitted && errors.description && (
-                                <span className="error-message">{errors.description}</span>
+                                <span className="error-message"> {errors.description}</span>
                             )}
                         </div>
                         <input
@@ -220,7 +220,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="price">Price</label>
                             {submitted && errors.price && (
-                                <span className="error-message">{errors.price}</span>
+                                <span className="error-message"> {errors.price}</span>
                             )}
                         </div>
                         <input
@@ -236,7 +236,7 @@ const UpdateItem = () => {
                         <div className="label-and-error">
                             <label htmlFor="quantity">Quantity</label>
                             {submitted && errors.quantity && (
-                                <span className="error-message">{errors.quantity}</span>
+                                <span className="error-message"> {errors.quantity}</span>
                             )}
                         </div>
                         <input

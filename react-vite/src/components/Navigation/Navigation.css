@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   /* position: relative; */
   /* background: linear-gradient(to bottom, lightyellow 0%, #ffffe0 500px, white 300px); */
-  height: 100%;
+
   margin-bottom: 0;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .navbar {
-  /* position: sticky; */
+  position: relative;
   top: 0px;
   display: flex;
 justify-content: space-between;
@@ -99,7 +99,7 @@ align-items: center;
 .profile-dropdown {
   position: fixed;
   width: 150px;
-  right: 3.2em;
+  right: .3em;
   top: 5.20em;
   background-color: white;
   border: 1px solid gray;
@@ -133,13 +133,13 @@ align-items: center;
 }
 
 .store-dropdown {
-  position: fixed;
+  position:fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 150px;
-  right: 9.4em;
+  right: 6.2em;
   top: 5.20em;
   background-color: white;
   border: 1px solid gray;
@@ -147,7 +147,8 @@ align-items: center;
   border-radius: 10px;
   font-weight: normal;
   list-style: none;
-  height: 80px
+  height: 80px;
+  z-index: 3;
 }
 
 .profile-button {
@@ -214,14 +215,21 @@ align-items: center;
 
 footer {
   position: relative;
+  justify-self: end;
   bottom: 0px;
-  width: 100%;
+  height: 35px;
+  min-height: 35px;
   background-color: #f5f5f5;
-  color: black;
-  text-align: center;
-  padding: 10px 0;
-justify-self: end;
+  margin-top: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+width: 100%;
+margin-bottom: 0px;
+list-style: none;
 }
+
 
 
 
