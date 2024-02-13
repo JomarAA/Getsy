@@ -11,6 +11,20 @@ Getsy is a user-friendly e-commerce platform inspired by [Etsy](https://www.etsy
 - [Database Schema](https://github.com/JomarAA/Getsy/wiki/Database-Schema)
 - [API Routes](https://github.com/JomarAA/Getsy/wiki/Routes)
 
+## Preview
+
+### Home Page
+
+<img src='./images/home.png'>
+
+### Item Details Page
+
+<img src='./images/itemdetails.png'>
+
+### Cart Page
+
+<img src='./images/cart.png'>
+
 ## Getting started
 
 1. Clone this repository (only this branch).
@@ -61,17 +75,3 @@ Getsy is a user-friendly e-commerce platform inspired by [Etsy](https://www.etsy
 - React
 - Redux
 - AWS
-
-## Preview
-
-### Home Page
-
-<img src='./images/home.png'>
-
-### Item Details Page
-
-<img src='./images/itemdetails.png'>
-
-### Cart Page
-
-<img src='./images/cart.png'>
