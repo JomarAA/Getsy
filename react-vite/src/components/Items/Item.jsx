@@ -61,8 +61,8 @@ export default function Items() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 6,
+        slidesToScroll: 6,
         nextArrow: <CustomArrow arrowType="next" />,
         prevArrow: <CustomArrow arrowType="prev" />,
         responsive: [
@@ -86,6 +86,12 @@ export default function Items() {
     };
 
     const itemsArr = Object.values(items)
+
+    const popArr = itemsArr.slice(1, 7);
+
+
+
+    // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', clothingItems)
 
     useEffect(() => {
         if (category) {
@@ -255,6 +261,16 @@ export default function Items() {
                             <p className="category-label">Jewelry</p>
                         </div>
                     </Slider>
+                </div>
+
+                <p className="popular-items">Shop popular items</p>
+                <div className="clothing-grid">
+                    <img id='main-img' src={items[12].image} alt='Item preview' />
+                    <div className="secondary-img-container">
+                        {popArr.map(item => (
+                            <img className='secondary-img' src={item.image} alt='Item preview' key={item.id} onClick={() => navigate(`/items/${item.id}`)} />
+                        ))}
+                    </div>
                 </div>
 
                 <div className="items-grid">
