@@ -6,6 +6,7 @@
   padding: 50px 0; /* This adds padding at the top and bottom */
   min-height: calc(100vh - 100px); /* Adjusted for the padding */
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .create-item-container {

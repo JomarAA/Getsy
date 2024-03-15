@@ -15,14 +15,15 @@
 
 
   .category-dropdown {
-    position: fixed;
+    position: absolute;
     width: 150px;
-    left: 12em;
-    top: 5.00em;
+    left: 11em;
+    top: 3.50em;
     background-color: white;
     border: 1px solid gray;
     padding: 10px 15px;
     border-radius: 10px;
     font-weight: normal;
     list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
   }

@@ -132,36 +132,6 @@ export default function Items() {
                 <h2 className="header">Welcome to Getsy!</h2>
                 {/* <h2 className="subheader">Get what you want and what you need, all in one place, where creativity meets convenience.</h2> */}
 
-
-                <p className="popular-items">Shop popular items</p>
-                <div className="clothing-grid">
-                    <div id='main-img-container'>
-                        <img id='main-img' src={items[12].image} alt='Item preview' />
-                        <div className="price-container">
-                            <p className="ran-item-price">${items[12].price}</p>
-                        </div>
-                    </div>
-                    <div className="secondary-img-container">
-                        {popArr.map(item => (
-                            <div key={item.id}>
-                                <img className='secondary-img' src={item.image} alt='Item preview' onClick={() => navigate(`/items/${item.id}`)} />
-                                <div className="price-container">
-                                    <p className="ran-item-price">${item.price}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="ran-items-container">
-                    {ranArr.map(item => (
-                        <div className="ran-item" key={item.id} onClick={() => navigate(`/items/${item.id}`)}>
-                            <img className="ran-img" src={item.image} alt='Item preview' key={item.id} />
-                            <p className="ran-name">{item.name}  &rarr;</p>
-                        </div>
-                    ))}
-                </div>
-
                 <div className="category-container">
                     <h2 className="category-header">Shop by Category</h2>
                     <Slider {...settings}>
@@ -309,6 +279,37 @@ export default function Items() {
                         </div>
                     </Slider>
                 </div>
+
+                <p className="popular-items">Shop popular items</p>
+                <div className="clothing-grid">
+                    <div id='main-img-container'>
+                        <img id='main-img' src={items[12].image} alt='Item preview' />
+                        <div className="price-container">
+                            <p className="ran-item-price">${items[12].price}</p>
+                        </div>
+                    </div>
+                    <div className="secondary-img-container">
+                        {popArr.map(item => (
+                            <div key={item.id}>
+                                <img className='secondary-img' src={item.image} alt='Item preview' onClick={() => navigate(`/items/${item.id}`)} />
+                                <div className="price-container">
+                                    <p className="ran-item-price">${item.price}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="ran-items-container">
+                    {ranArr.map(item => (
+                        <div className="ran-item" key={item.id} onClick={() => navigate(`/items/${item.id}`)}>
+                            <img className="ran-img" src={item.image} alt='Item preview' key={item.id} />
+                            <p className="ran-name">{item.name}  &rarr;</p>
+                        </div>
+                    ))}
+                </div>
+
+
 
                 <div className="items-grid">
                     {itemsArr.map(item => (

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "./CartCard.css";
 import { thunkDeleteItem, getCurrentItems } from "../../redux/item";
 import { thunkUpdateCart } from "../../redux/cart";
 import { NavLink } from "react-router-dom";
