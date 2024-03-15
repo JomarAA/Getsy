@@ -47,15 +47,29 @@ export default function Items() {
         }, 1);
     };
 
-    const CustomArrow = ({ className, style, onClick, arrowType }) => (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "rgba(236, 160, 20, 0.889)" }}
-            onClick={onClick}
-        >
-            {arrowType === "next" ? ">" : "<"}
-        </div>
-    );
+    const CustomArrow = ({ className, style, onClick, arrowType }) => {
+        const arrowIcon = arrowType === "next" ? "▶" : "◀";
+
+        const arrowStyle = {
+            ...style,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "rgba(236, 160, 20, 0.5)",
+            fontSize: "20px",
+            background: "none",
+            borderRadius: "50%",
+            width: "40px",
+            height: "40px",
+            cursor: "pointer",
+        };
+
+        return (
+            <div className={className} style={arrowStyle} onClick={onClick}>
+                {arrowIcon}
+            </div>
+        );
+    };
 
     const settings = {
         dots: true,
@@ -87,7 +101,9 @@ export default function Items() {
 
     const itemsArr = Object.values(items)
 
-    const popArr = itemsArr.slice(1, 7);
+    const popArr = itemsArr.slice(13, 19);
+
+    const ranArr = itemsArr.slice(7, 11);
 
 
 
@@ -114,7 +130,38 @@ export default function Items() {
         <>
             <div className='items-container'>
                 <h2 className="header">Welcome to Getsy!</h2>
-                <h2 className="subheader">Get what you want and what you need, all in one place, where creativity meets convenience.</h2>
+                {/* <h2 className="subheader">Get what you want and what you need, all in one place, where creativity meets convenience.</h2> */}
+
+
+                <p className="popular-items">Shop popular items</p>
+                <div className="clothing-grid">
+                    <div id='main-img-container'>
+                        <img id='main-img' src={items[12].image} alt='Item preview' />
+                        <div className="price-container">
+                            <p className="ran-item-price">${items[12].price}</p>
+                        </div>
+                    </div>
+                    <div className="secondary-img-container">
+                        {popArr.map(item => (
+                            <div key={item.id}>
+                                <img className='secondary-img' src={item.image} alt='Item preview' onClick={() => navigate(`/items/${item.id}`)} />
+                                <div className="price-container">
+                                    <p className="ran-item-price">${item.price}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="ran-items-container">
+                    {ranArr.map(item => (
+                        <div className="ran-item" key={item.id} onClick={() => navigate(`/items/${item.id}`)}>
+                            <img className="ran-img" src={item.image} alt='Item preview' key={item.id} />
+                            <p className="ran-name">{item.name}  &rarr;</p>
+                        </div>
+                    ))}
+                </div>
+
                 <div className="category-container">
                     <h2 className="category-header">Shop by Category</h2>
                     <Slider {...settings}>
@@ -261,16 +308,6 @@ export default function Items() {
                             <p className="category-label">Jewelry</p>
                         </div>
                     </Slider>
-                </div>
-
-                <p className="popular-items">Shop popular items</p>
-                <div className="clothing-grid">
-                    <img id='main-img' src={items[12].image} alt='Item preview' />
-                    <div className="secondary-img-container">
-                        {popArr.map(item => (
-                            <img className='secondary-img' src={item.image} alt='Item preview' key={item.id} onClick={() => navigate(`/items/${item.id}`)} />
-                        ))}
-                    </div>
                 </div>
 
                 <div className="items-grid">
