@@ -8,6 +8,7 @@ import ItemCard from "../ItemCard/ItemCard"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ItemDetCard from "../ItemCard/ItemDetCard";
 
 
 export default function Items() {
@@ -105,6 +106,7 @@ export default function Items() {
 
     const ranArr = itemsArr.slice(7, 11);
 
+    const giftArr = itemsArr.slice(12, 17)
 
 
     // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', clothingItems)
@@ -307,6 +309,16 @@ export default function Items() {
                             <p className="ran-name">{item.name}  &rarr;</p>
                         </div>
                     ))}
+                </div>
+
+                <div className="popular-gifts-container">
+                    <p className="sub-cat-header">Popular gifts right now</p>
+                    <div id='gift-img-container'>
+                        {giftArr.map(item => (
+                            <ItemDetCard item={item} key={item.id} />
+                        ))}
+                    </div>
+
                 </div>
 
 

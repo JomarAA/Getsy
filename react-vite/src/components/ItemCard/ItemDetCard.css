@@ -1,0 +1,10 @@
+#item-det-img{
+    height: 180px;
+    width: 253px;
+    border-radius: 5px;
+}
+
+.item-det-card{
+    max-width: 253px;
+    text-align: start;
+}
