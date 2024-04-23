@@ -106,7 +106,7 @@ export default function Items() {
 
     const ranArr = itemsArr.slice(7, 11);
 
-    const giftArr = itemsArr.slice(12, 17)
+    const giftArr = itemsArr.slice(17, 25)
 
 
     // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', clothingItems)
@@ -318,10 +318,18 @@ export default function Items() {
                             <ItemDetCard item={item} key={item.id} />
                         ))}
                     </div>
-
                 </div>
 
-
+                <div className="trending-container">
+                    <p className="popular-items">Trending Now</p>
+                    <ItemCard item={items[11]} />
+                    <ItemCard item={items[2]} />
+                    <ItemCard item={items[10]} />
+                    <ItemCard item={items[13]} />
+                    <ItemCard item={items[5]} />
+                    <ItemCard item={items[15]} />
+                    <ItemCard item={items[7]} />
+                </div>
 
                 <div className="items-grid">
                     {itemsArr.map(item => (

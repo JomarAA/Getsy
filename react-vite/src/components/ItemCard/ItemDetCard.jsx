@@ -11,7 +11,7 @@ export default function ItemDetCard({ item }) {
     return (
         <div className="item-det-card" onClick={handleClick} title={item.name}>
             <img id='item-det-img' src={item.image} alt='Item preview' />
-            <div className="item-name">{item.name}</div>
+            <div className="item-det-name">{item.name}</div>
             <div className="item-det-price">${item.price}</div>
 
         </div>

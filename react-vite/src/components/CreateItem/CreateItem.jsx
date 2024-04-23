@@ -90,6 +90,16 @@ const CreateItem = () => {
 
     }, [name, price, description, quantity, image, category])
 
+
+    function formatPrice(value) {
+        let periodIndex = value.indexOf('.')
+        let decimal = value.slice(periodIndex)
+
+        if (decimal.length > 3) value = parseFloat(value).toFixed(2)
+        return value
+    }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
@@ -110,6 +120,8 @@ const CreateItem = () => {
         item.append("image", image)
         item.append("quantity", quantity)
         item.append("category", category)
+
+
 
         try {
             const serverResponse = await dispatch(thunkCreateItem(item));
@@ -184,9 +196,9 @@ const CreateItem = () => {
                         </div>
                         <input
                             id="price-input"
-                            type='number' // Use text to ensure users can enter decimal points
+                            type='interger' // Use text to ensure users can enter decimal points
                             placeholder='Set a price for your product'
-                            onChange={e => setPrice(e.target.value)} // Keep as string during input
+                            onChange={e => setPrice(formatPrice(e.target.value))} // Keep as string during input
 
 
                             value={price}

@@ -7,4 +7,16 @@
 .item-det-card{
     max-width: 253px;
     text-align: start;
+    cursor: pointer;
+    padding: 4px;
 }
+
+.item-det-name, .item-det-price{
+    font-weight: light;
+    font-size: 14px;
+}
+
+.item-det-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5);
+  }
