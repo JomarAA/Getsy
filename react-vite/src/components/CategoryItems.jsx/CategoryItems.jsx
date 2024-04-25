@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./CategoryItems.css";
 import ItemCard from "../ItemCard/ItemCard";
+import ItemDetCard from "../ItemCard/ItemDetCard";
 import { NavLink } from "react-router-dom";
 
 function CategoryItems() {
@@ -61,7 +62,7 @@ function CategoryItems() {
 
                 <div className="items-grid">
                     {itemsArr.map(item => (
-                        <ItemCard item={item} key={item.id} />
+                        <ItemDetCard item={item} key={item.id} />
                     ))}
                 </div>
             </div>

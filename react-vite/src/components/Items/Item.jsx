@@ -321,19 +321,24 @@ export default function Items() {
                 </div>
 
                 <div className="trending-container">
-                    <p className="popular-items">Trending Now</p>
-                    <ItemCard item={items[11]} />
-                    <ItemCard item={items[2]} />
-                    <ItemCard item={items[10]} />
-                    <ItemCard item={items[13]} />
-                    <ItemCard item={items[5]} />
-                    <ItemCard item={items[15]} />
-                    <ItemCard item={items[7]} />
+                    <div className="popular-items">
+                        <p id="trend-head">Trending Now</p>
+                        <p id="sub-trend">Shop these unquie finds</p>
+                    </div>
+                    <img id='trend-big-img' src={items[11].image} alt='Item preview' />
+                    <img id='trend-small-img' src={items[2].image} alt='Item preview' />
+                    <img id='trend-big-img' src={items[10].image} alt='Item preview' />
+                    <img id='main-big-img' src={items[13].image} alt='Item preview' />
+                    <img id='second-big-img' src={items[5].image} alt='Item preview' />
+                    <img id='second-small-img' src={items[15].image} alt='Item preview' />
+                    <div className="popular-items">
+                        <p id="sub-trend">Our resident expert, Jon Snow revealse the freshest trends you need to know</p>
+                    </div>
                 </div>
 
                 <div className="items-grid">
                     {itemsArr.map(item => (
-                        <ItemCard item={item} key={item.id} />))}
+                        <ItemDetCard item={item} key={item.id} />))}
                 </div>
             </div>
             <footer>

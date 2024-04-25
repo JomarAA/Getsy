@@ -15,7 +15,7 @@ min-height: 1000px;
 
   .items-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     justify-content: center;
     padding-top: 20px;
@@ -249,7 +249,94 @@ font-weight: lighter;
 .trending-container{
   display: grid;
   grid-template-columns: 3fr 2fr 1fr 2fr;
-  margin: 80px 165px;
+  margin: 80px 200px;
   text-align: center;
+row-gap: 15px;
+}
 
+.popular-items{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#sub-trend{
+  font-size: 16px;
+  width: 80%;
+}
+#trend-big-img {
+  /* max-width: 530px; */
+  width: 330px;
+  height: 230px;
+  border-radius: 3%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#trend-big-img:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  /* box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5); */
+}
+
+#trend-small-img {
+  /* max-width: 530px; */
+  width: 175px;
+  height: 230px;
+  border-radius: 3%;
+  cursor: pointer;
+  margin-right: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#trend-small-img:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  /* box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5); */
+}
+
+#trend-head {
+  font-size: 22px;
+}
+
+#main-big-img {
+  /* max-width: 530px; */
+  width: 520px;
+  height: 280px;
+  border-radius: 3%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#main-big-img:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  /* box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5); */
+}
+
+#second-big-img {
+  /* max-width: 530px; */
+  width: 330px;
+  height: 280px;
+  border-radius: 3%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#second-big-img:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  /* box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5); */
+}
+
+#second-small-img {
+  /* max-width: 530px; */
+  width: 175px;
+  height: 280px;
+  border-radius: 3%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#second-small-img:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  /* box-shadow: 0px 0px 10px rgba(236, 160, 20, 0.5); */
 }
