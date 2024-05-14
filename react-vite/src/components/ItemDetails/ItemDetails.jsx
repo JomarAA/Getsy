@@ -91,7 +91,7 @@ const ItemDetails = () => {
                         <h2 className="itemPrice">$ {item.price}</h2>
                         <h3 className="itemName">Name: {item.name}</h3>
                         <h3 className="itemDescription">Description: {item.description}</h3>
-                        {sessionUser && item.sellerId !== sessionUser.id && (
+                        {sessionUser && (
                             <div className="item-actions">
                                 <select
                                     className="quantity-select"

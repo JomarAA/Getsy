@@ -1,6 +1,7 @@
 .content-container {
   display: flex;
   justify-content: center;
+  min-height: 89vh;
 }
 
 .item_detail_container {
