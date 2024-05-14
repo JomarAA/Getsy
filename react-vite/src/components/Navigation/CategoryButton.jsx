@@ -40,7 +40,7 @@ function CategoryButton() {
     return (
         <>
             <button onClick={toggleMenu} className="categories-button">
-                <i class="fa-solid fa-bars"></i>
+                <i className="fa-solid fa-bars"></i>
                 Categories
             </button>
             {showMenu && (

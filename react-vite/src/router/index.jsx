@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Items from '../components/Items/Item';
+import ErrorPage from '../components/ErrorPage/Errorpage';
 import ItemDetails from '../components/ItemDetails/ItemDetails';
 import Layout from './Layout';
 import CreateItem from '../components/CreateItem/CreateItem';
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/*",
-        element: <h1>Page not found</h1>
+        element: <ErrorPage />
       },
     ],
   },

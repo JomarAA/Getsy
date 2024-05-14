@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user
 from flask_login import login_required
 from ..models import db
-from ..models.user import Item, Cart, User
+from ..models.user import Item
 from .AWS_helpers import upload_file_to_s3, remove_file_from_s3, get_unique_filename
 from ..forms.item_form import ItemForm
 
@@ -23,9 +23,9 @@ def get_single_item(id):
 
     item = Item.query.get(id)
 
-    item_data = item.to_dict()
-
-    return jsonify(item_data)
+    if not item:
+        return jsonify(error='Item not found'), 404
+    return jsonify(item.to_dict())
 
 
 @item_routes.route('/current')
@@ -140,7 +140,7 @@ def delete_item(id):
     if item.sellerId != current_user.id:
         return jsonify(error='Unauthorized'), 403
 
-    # Remove the item's image from S3 (assuming you have an AWS helper function for this)
+
     remove_file_from_s3(item.image)
 
     db.session.delete(item)

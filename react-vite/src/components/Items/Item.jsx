@@ -42,7 +42,6 @@ export default function Items() {
             index++;
             if (index === text.length) {
                 clearInterval(interval);
-                // Remove setTimeout, update isLoading immediately after animation ends
                 setIsLoading(false);
             }
         }, 1);
@@ -106,10 +105,8 @@ export default function Items() {
 
     const ranArr = itemsArr.slice(7, 11);
 
-    const giftArr = itemsArr.slice(17, 25)
+    const giftArr = itemsArr.slice(16, 25)
 
-
-    // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', clothingItems)
 
     useEffect(() => {
         if (category) {
@@ -131,214 +128,215 @@ export default function Items() {
     return (
         <>
             <div className='items-container'>
-                <h2 className="header">Welcome to Getsy!</h2>
-                {/* <h2 className="subheader">Get what you want and what you need, all in one place, where creativity meets convenience.</h2> */}
+                <div className="main-content-container">
+                    <h2 className="header">Welcome to Getsy!</h2>
 
-                <div className="category-container">
-                    <h2 className="category-header">Shop by Category</h2>
-                    <Slider {...settings}>
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Accessories")}
-                        >
+                    <div className="category-container">
+                        <h2 className="category-header">Shop by Category</h2>
+                        <Slider {...settings}>
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Accessories")}
+                            >
 
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.3545239327_6o90.jpeg"
-                            />
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.3545239327_6o90.jpeg"
+                                />
 
-                            <p className="category-label">Accessories</p>
+                                <p className="category-label">Accessories</p>
+                            </div>
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Art & Collectibles")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.5199383381_2wjz.jpeg"
+                                />
+
+                                <p className="category-label">Art & Collectibles</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Baby")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.1481574430_btva.jpeg"
+                                />
+
+                                <p className="category-label">Baby</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Bags & Purses")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_340x270.2563255638_j6nq.jpeg"
+                                />
+
+                                <p className="category-label">Bags & Purses</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Bath & Beauty")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.5610101734_bxvw.jpeg"
+                                />
+
+                                <p className="category-label">Bath & Beauty</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Books, Movies & Music")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.5622208262_cdvw.jpeg"
+                                />
+
+                                <p className="category-label">Books, Movies & Music</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Clothing")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.2515107181_b7dy.jpeg"
+                                />
+
+                                <p className="category-label">Clothing</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Craft Supplies & Tools")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.1607138151_7mpz.jpeg"
+                                />
+
+                                <p className="category-label">Craft Supplies & Tools</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Electronics & Accessories")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.2934516109_t39i.jpeg"
+                                />
+
+                                <p className="category-label">Electronics & Accessories</p>
+                            </div>
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Home & Living")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.2240139670_i5dn.jpeg"
+                                />
+
+                                <p className="category-label">Home & Living</p>
+                            </div>
+
+
+                            <div
+                                className="single-category-container"
+                                onClick={() => setCategory("Jewlery")}
+                            >
+
+                                <img
+                                    className="cat-img"
+                                    src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.599928682_abcm.jpeg"
+                                />
+
+                                <p className="category-label">Jewelry</p>
+                            </div>
+                        </Slider>
+                    </div>
+
+                    <p className="popular-items">Shop popular items</p>
+                    <div className="clothing-grid">
+                        <div id='main-img-container'>
+                            <img id='main-img' src={items[11].image} alt='Item preview' onClick={() => navigate(`/items/13`)} />
+                            <div className="price-container">
+                                <p className="ran-item-price">${items[12].price}</p>
+                            </div>
                         </div>
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Art & Collectibles")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.5199383381_2wjz.jpeg"
-                            />
-
-                            <p className="category-label">Art & Collectibles</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Baby")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.1481574430_btva.jpeg"
-                            />
-
-                            <p className="category-label">Baby</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Bags & Purses")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_340x270.2563255638_j6nq.jpeg"
-                            />
-
-                            <p className="category-label">Bags & Purses</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Bath & Beauty")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.5610101734_bxvw.jpeg"
-                            />
-
-                            <p className="category-label">Bath & Beauty</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Books, Movies & Music")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.5622208262_cdvw.jpeg"
-                            />
-
-                            <p className="category-label">Books, Movies & Music</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Clothing")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.2515107181_b7dy.jpeg"
-                            />
-
-                            <p className="category-label">Clothing</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Craft Supplies & Tools")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_680x540.1607138151_7mpz.jpeg"
-                            />
-
-                            <p className="category-label">Craft Supplies & Tools</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Electronics & Accessories")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_794xN.2934516109_t39i.jpeg"
-                            />
-
-                            <p className="category-label">Electronics & Accessories</p>
-                        </div>
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Home & Living")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.2240139670_i5dn.jpeg"
-                            />
-
-                            <p className="category-label">Home & Living</p>
-                        </div>
-
-
-                        <div
-                            className="single-category-container"
-                            onClick={() => setCategory("Jewlery")}
-                        >
-
-                            <img
-                                className="cat-img"
-                                src="https://getsy.s3.us-west-1.amazonaws.com/il_1588xN.599928682_abcm.jpeg"
-                            />
-
-                            <p className="category-label">Jewelry</p>
-                        </div>
-                    </Slider>
-                </div>
-
-                <p className="popular-items">Shop popular items</p>
-                <div className="clothing-grid">
-                    <div id='main-img-container'>
-                        <img id='main-img' src={items[12].image} alt='Item preview' />
-                        <div className="price-container">
-                            <p className="ran-item-price">${items[12].price}</p>
+                        <div className="secondary-img-container">
+                            {popArr.map(item => (
+                                <div key={item.id}>
+                                    <img className='secondary-img' src={item.image} alt='Item preview' onClick={() => navigate(`/items/${item.id}`)} />
+                                    <div className="price-container">
+                                        <p className="ran-item-price">${item.price}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div className="secondary-img-container">
-                        {popArr.map(item => (
-                            <div key={item.id}>
-                                <img className='secondary-img' src={item.image} alt='Item preview' onClick={() => navigate(`/items/${item.id}`)} />
-                                <div className="price-container">
-                                    <p className="ran-item-price">${item.price}</p>
-                                </div>
+
+                    <div className="ran-items-container">
+                        {ranArr.map(item => (
+                            <div className="ran-item" key={item.id} onClick={() => navigate(`/items/${item.id}`)}>
+                                <img className="ran-img" src={item.image} alt='Item preview' key={item.id} />
+                                <p className="ran-name">{item.name}  &rarr;</p>
                             </div>
                         ))}
                     </div>
-                </div>
 
-                <div className="ran-items-container">
-                    {ranArr.map(item => (
-                        <div className="ran-item" key={item.id} onClick={() => navigate(`/items/${item.id}`)}>
-                            <img className="ran-img" src={item.image} alt='Item preview' key={item.id} />
-                            <p className="ran-name">{item.name}  &rarr;</p>
+                    <div className="popular-gifts-container">
+                        <p className="sub-cat-header">Popular gifts right now</p>
+                        <div id='gift-img-container'>
+                            {giftArr.map(item => (
+                                <ItemDetCard item={item} key={item.id} />
+                            ))}
                         </div>
-                    ))}
-                </div>
-
-                <div className="popular-gifts-container">
-                    <p className="sub-cat-header">Popular gifts right now</p>
-                    <div id='gift-img-container'>
-                        {giftArr.map(item => (
-                            <ItemDetCard item={item} key={item.id} />
-                        ))}
                     </div>
-                </div>
 
-                <div className="trending-container">
-                    <div className="popular-items">
-                        <p id="trend-head">Trending Now</p>
-                        <p id="sub-trend">Shop these unquie finds</p>
+                    <div className="trending-container">
+                        <div className="popular-items">
+                            <p id="trend-head">Trending Now</p>
+                            <p id="sub-trend">Shop these unquie finds</p>
+                        </div>
+                        <img id='trend-big-img' src={items[11].image} alt='Item preview' />
+                        <img id='trend-small-img' src={items[2].image} alt='Item preview' />
+                        <img id='trend-big-img' src={items[10].image} alt='Item preview' />
+                        <img id='main-big-img' src={items[12].image} alt='Item preview' />
+                        <img id='second-big-img' src={items[4].image} alt='Item preview' />
+                        <img id='second-small-img' src={items[14].image} alt='Item preview' />
+                        <div className="popular-items">
+                            <p id="sub-trend">Our resident expert, Jon Snow revealse the freshest trends you need to know</p>
+                        </div>
                     </div>
-                    <img id='trend-big-img' src={items[11].image} alt='Item preview' />
-                    <img id='trend-small-img' src={items[2].image} alt='Item preview' />
-                    <img id='trend-big-img' src={items[10].image} alt='Item preview' />
-                    <img id='main-big-img' src={items[13].image} alt='Item preview' />
-                    <img id='second-big-img' src={items[5].image} alt='Item preview' />
-                    <img id='second-small-img' src={items[15].image} alt='Item preview' />
-                    <div className="popular-items">
-                        <p id="sub-trend">Our resident expert, Jon Snow revealse the freshest trends you need to know</p>
-                    </div>
-                </div>
 
-                <div className="items-grid">
-                    {itemsArr.map(item => (
-                        <ItemDetCard item={item} key={item.id} />))}
+                    <div className="items-grid">
+                        {itemsArr.map(item => (
+                            <ItemDetCard item={item} key={item.id} />))}
+                    </div>
                 </div>
             </div>
             <footer>

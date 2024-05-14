@@ -17,6 +17,8 @@ const ItemDetails = () => {
     const [loadingText, setLoadingText] = useState('');
 
 
+
+
     useEffect(() => {
         setIsLoading(true);
         dispatch(thunkGetOneItem(id))
@@ -62,9 +64,23 @@ const ItemDetails = () => {
     }
 
 
+    if (!item) {
+        return (
+            <div className="error-page">
+                <h2>
+                    Uh oh!
+                </h2>
+                <p>Sorry, the page you were looking for was not found.</p>
+                <button onClick={() => navigate('/')} className="quantity-button">
+                    Shop Now
+                </button>
+            </div>
+        );
+    }
 
     return (
         <>
+
             <div className="content-container">
                 <div className='item_detail_container' key={item.id}>
 

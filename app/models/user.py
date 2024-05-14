@@ -94,3 +94,27 @@ class Cart(db.Model):
 
     user = db.relationship('User', primaryjoin="Cart.user_id == User.id")
     item = db.relationship('Item', primaryjoin="Cart.item_id == Item.id")
+
+
+class Review(db.Model):
+    __tablename__ = 'reviews'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    itemId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('items.id')))
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    review = db.Column(db.String(3000), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    createdAt = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'itemId': self.itemId,
+            'userId': self.userId,
+            'review': self.review,
+            'rating': self.rating,
+            'createdAt': self.createdAt
+        }

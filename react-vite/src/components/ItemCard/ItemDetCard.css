@@ -1,19 +1,20 @@
 #item-det-img{
     height: 180px;
-    width: 253px;
+    width: 246px;
     border-radius: 5px;
 }
 
 .item-det-card{
-    max-width: 253px;
     text-align: start;
     cursor: pointer;
     padding: 4px;
+    font-size: 15px;
 }
 
 .item-det-name, .item-det-price{
-    font-weight: light;
-    font-size: 14px;
+    font-weight:580;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif
 }
 
 .item-det-card:hover {

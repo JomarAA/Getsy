@@ -18,23 +18,25 @@ function Navigation() {
   return (
     <>
       <ul className='navbar'>
-        <div className="nav-left">
+        <div className="nav-contents">
+          <div className="nav-left">
 
-          <NavLink to="/" className='homenav'>Getsy</NavLink>
-          <CategoryButton />
-        </div>
-        <div className="user-actions">
-          {user && (
-            <>
-              <StoreButton />
-              <NavLink to='/cart' className={'navLink'}>
-                <span className="cart-icon">
-                  <FontAwesomeIcon icon={faCartShopping} />
-                </span>
-              </NavLink>
-            </>
-          )}
-          <ProfileButton />
+            <NavLink to="/" className='homenav'>Getsy</NavLink>
+            <CategoryButton />
+          </div>
+          <div className="user-actions">
+            {user && (
+              <>
+                <StoreButton />
+                <NavLink to='/cart' className={'navLink'}>
+                  <span className="cart-icon">
+                    <FontAwesomeIcon icon={faCartShopping} />
+                  </span>
+                </NavLink>
+              </>
+            )}
+            <ProfileButton />
+          </div>
         </div>
       </ul>
 

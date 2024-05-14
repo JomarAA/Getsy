@@ -72,7 +72,6 @@ const Cart = () => {
         return total.toFixed(2);
     }
 
-    const [isDataReady, setIsDataReady] = useState(false);
     const [loadingText, setLoadingText] = useState('');
 
     useEffect(() => {
