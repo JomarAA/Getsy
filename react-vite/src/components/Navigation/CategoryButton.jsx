@@ -46,7 +46,7 @@ function CategoryButton() {
             {showMenu && (
                 <ul className="category-dropdown" ref={dropdownRef}>
                     {CATEGORY_CHOICES.map((cat) => (
-                        <li key={cat} className="navLink" onClick={() => setCategory(cat)}>
+                        <li key={cat} className="navLink" id="catlink" onClick={() => setCategory(cat)}>
                             {cat}
                         </li>
                     ))}

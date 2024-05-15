@@ -65,7 +65,7 @@ function LoginFormModal() {
           <div className={`error ${!errors.password ? 'error-placeholder' : ''}`}>{errors.password}</div>
           <button type="submit" disabled={!email || !password}>Log In</button>
         </form>
-        <button className="product-button" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>
+        {/* <button className="product-button" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button> */}
 
       </div>
     </>

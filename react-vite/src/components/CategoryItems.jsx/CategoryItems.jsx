@@ -56,14 +56,17 @@ function CategoryItems() {
 
     return (
         <>
-            <div className='items-container'>
-                <h1>Welcome to Getsy!</h1>
-                <h2>Get what you want and what you need, all in one place, where creativity meets convenience.</h2>
+            <div className='category-page-container'>
 
-                <div className="items-grid">
-                    {itemsArr.map(item => (
-                        <ItemDetCard item={item} key={item.id} />
-                    ))}
+                <div className="cat-content-container">
+
+                    <h2 className="category-title">{category}</h2>
+
+                    <div className="items-grid">
+                        {itemsArr.map(item => (
+                            <ItemDetCard item={item} key={item.id} />
+                        ))}
+                    </div>
                 </div>
             </div>
             <footer>
@@ -73,6 +76,7 @@ function CategoryItems() {
 
             </footer>
         </>
+
     );
 }
 

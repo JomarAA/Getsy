@@ -322,12 +322,12 @@ export default function Items() {
                             <p id="trend-head">Trending Now</p>
                             <p id="sub-trend">Shop these unquie finds</p>
                         </div>
-                        <img id='trend-big-img' src={items[11].image} alt='Item preview' />
-                        <img id='trend-small-img' src={items[2].image} alt='Item preview' />
-                        <img id='trend-big-img' src={items[10].image} alt='Item preview' />
-                        <img id='main-big-img' src={items[12].image} alt='Item preview' />
-                        <img id='second-big-img' src={items[4].image} alt='Item preview' />
-                        <img id='second-small-img' src={items[14].image} alt='Item preview' />
+                        <img id='trend-big-img' src={items[11].image} alt='Item preview' onClick={() => navigate(`/items/${13}`)} />
+                        <img id='trend-small-img' src={items[2].image} alt='Item preview' onClick={() => navigate(`/items/${4}`)} />
+                        <img id='trend-big-img' src={items[10].image} alt='Item preview' onClick={() => navigate(`/items/${12}`)} />
+                        <img id='main-big-img' src={items[12].image} alt='Item preview' onClick={() => navigate(`/items/${14}`)} />
+                        <img id='second-big-img' src={items[4].image} alt='Item preview' onClick={() => navigate(`/items/${6}`)} />
+                        <img id='second-small-img' src={items[14].image} alt='Item preview' onClick={() => navigate(`/items/${16}`)} />
                         <div className="popular-items">
                             <p id="sub-trend">Our resident expert, Jon Snow revealse the freshest trends you need to know</p>
                         </div>

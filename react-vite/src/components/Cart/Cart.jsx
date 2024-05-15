@@ -115,11 +115,13 @@ const Cart = () => {
 
     if (!cartItems || !Object.values(cartItems).length) {
         return (
-            <div className="product-container">
-                <h2>Your cart is empty. Discover something new to fill it up.</h2>
-                <button onClick={() => navigate('/')} className="quantity-button">
-                    Shop Now
-                </button>
+            <div className="items-container">
+                <div className="product-container">
+                    <h2>Your cart is empty. Discover something new to fill it up.</h2>
+                    <button onClick={() => navigate('/')} className="quantity-button">
+                        Shop Now
+                    </button>
+                </div>
             </div>
         );
     }
@@ -128,73 +130,78 @@ const Cart = () => {
 
     return (
         <>
-            <div className="product-container">
-                <h1 className="cart-header">{cartArr.length} items in your cart</h1>
+            <div className="items-container">
+                <div className="product-container">
+                    <h1 className="cart-header">{cartArr.length} items in your cart</h1>
 
-                <div className="cart-container"> {/* New wrapping div */}
-                    {cartArr.length <= 0 ? (
-                        <div className="empty-cart-message">
-                            <h2>Your cart is empty. Discover something new to fill it up.</h2>
-                            <button onClick={handleShop} className="product-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="cart-item-container">
-                            {cartArr.map((item) => (
-                                <div className="one-cart" item={item} key={item.id}>
+                    <div className="cart-container"> {/* New wrapping div */}
+                        {cartArr.length <= 0 ? (
+                            <div className="empty-cart-message">
+                                <h2>Your cart is empty. Discover something new to fill it up.</h2>
+                                <button onClick={handleShop} className="product-button">
+                                    Shop Now
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="cart-item-container">
+                                {cartArr.map((item) => (
+                                    <div className="one-cart" item={item} key={item.id}>
 
 
-                                    <img id="cart-img" src={item.image} alt="Item preview" />
-                                    <div className="cart-details">
+                                        <img id="cart-img" src={item.image} alt="Item preview" />
+                                        <div className="cart-details">
 
-                                        <div id='item-name'>Name: {item.item_name}</div>
-                                        <div id='item-description'>Description: {item.item_description}</div>
-                                        <div id='item-quantity'>Price: {item.item_price}</div>
+                                            <div id='item-name'>Name: {item.item_name}</div>
+                                            <div id='item-description'>Description: {item.item_description}</div>
+                                            <div id='item-quantity'>Price: {item.item_price}</div>
 
-                                        <div className="quantity-control">
-                                            Quantity:
-                                            <input
-                                                type="number"
-                                                min="1" // This prevents the input from going below 1
-                                                value={newQuantities[item.id] || ''}
-                                                onChange={(e) => {
-                                                    const value = parseInt(e.target.value, 10);
-                                                    setNewQuantities((prevQuantities) => ({
-                                                        ...prevQuantities,
-                                                        [item.id]: value >= 1 ? value : 1 // This enforces the minimum value of 1
-                                                    }));
-                                                }}
-                                                placeholder={item.item_quantity}
-                                            />
-                                            <div className="error-message">
-                                                {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
-                                            </div>
-                                            <div className="cart-button-container">
-                                                <div className="update-cart-item" onClick={() => handleUpdate(item.id)}><i className="fa-solid fa-pen-to-square"></i>Update Item</div>
-                                                <div className="delete-product">
+                                            <div className="quantity-control">
+                                                Quantity:
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    value={newQuantities[item.id] || ''}
+                                                    onChange={(e) => {
+                                                        const value = parseInt(e.target.value, 10);
+                                                        setNewQuantities((prevQuantities) => ({
+                                                            ...prevQuantities,
+                                                            [item.id]: value >= 1 ? value : 1
+                                                        }));
+                                                    }}
+                                                    placeholder={item.item_quantity}
+                                                />
+                                                <div className="error-message">
+                                                    {quantityErrors[item.id] && <span>{quantityErrors[item.id]}</span>}
+                                                </div>
+                                                <div className="cart-button-container">
+                                                    <div className="update-cart-item" onClick={() => handleUpdate(item.id)}><i className="fa-solid fa-pen-to-square"></i>Update Item</div>
+                                                    <div className="delete-product">
 
-                                                    <OpenModalMenuItem
-                                                        itemText={(<><i className="fa-solid fa-trash-can"></i> Delete</>)}
-                                                        modalComponent={<DeleteCartItemModal id={item.id} />}
-                                                    />
+                                                        <OpenModalMenuItem
+                                                            itemText={(<><i className="fa-solid fa-trash-can"></i> Delete</>)}
+                                                            modalComponent={<DeleteCartItemModal id={item.id} />}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                    {cartArr.length > 0 && (
-                        <div className="checkout-container">
-                            <h3>Cart Total: ${calculateTotal()}</h3>
-                            <button onClick={handleClearCart} className="quantity-button">
-                                Checkout Cart
-                            </button>
-                        </div>
-                    )}
-                </div> {/* Closing tag for new wrapping div */}
+                                ))}
+                            </div>
+                        )}
+                        {cartArr.length > 0 && (
+                            <div className="checkout-container">
+                                <p id="cart-total-details">
+                                    <span id="cart-cat">Cart total </span>
+                                    <span id="cart-price">${calculateTotal()}</span>
+                                </p>
+                                <button onClick={handleClearCart} className="quantity-button">
+                                    Checkout Cart
+                                </button>
+                            </div>
+                        )}
+                    </div> {/* Closing tag for new wrapping div */}
+                </div>
             </div>
             <footer>
                 <li> Developed by: Jomar Yanos</li>

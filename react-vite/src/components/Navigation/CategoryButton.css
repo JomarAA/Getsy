@@ -16,9 +16,10 @@
 
   .category-dropdown {
     position: absolute;
-    width: 150px;
-    left: 46.8em;
+    width: 250px;
+    left: 47.8em;
     top: 3.50em;
+
     background-color: white;
     border: 1px solid gray;
     padding: 10px 15px;
@@ -26,4 +27,8 @@
     font-weight: normal;
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #catlink {
+    margin: 18px 10px;
   }

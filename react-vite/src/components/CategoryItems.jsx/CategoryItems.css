@@ -1,0 +1,22 @@
+
+.category-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 89vh;
+ }
+
+ .category-title {
+    font-size: 30px;
+    font-weight: 300;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 80px;
+ }
+
+  .cat-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    max-width: 1335px;
+  }

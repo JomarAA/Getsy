@@ -64,22 +64,24 @@ const CurrentItems = () => {
     if (!isLoading) {
         return (
             <>
-                <div className="your-product-container">
-                    <h1>Your Products</h1>
-                    {userItemsArray.length === 0 ? (
-                        <div className="no-products-message">
-                            <h2>You have no products, would you like to create a new item?</h2>
-                            <NavLink to="/items/new">
-                                <button className="item-submit">Create New Item</button>
-                            </NavLink>
-                        </div>
-                    ) : (
-                        <div className="product-grid">
-                            {userItemsArray.map((item) => (
-                                <ProductCard item={item} key={item.id} />
-                            ))}
-                        </div>
-                    )}
+                <div className="items-container">
+                    <div className="your-product-container">
+                        <h1>Your Products</h1>
+                        {userItemsArray.length === 0 ? (
+                            <div className="no-products-message">
+                                <h2>You have no products, would you like to create a new item?</h2>
+                                <NavLink to="/items/new">
+                                    <button className="item-submit">Create New Item</button>
+                                </NavLink>
+                            </div>
+                        ) : (
+                            <div className="product-grid">
+                                {userItemsArray.map((item) => (
+                                    <ProductCard item={item} key={item.id} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <footer>
                     <li> Developed by: Jomar Yanos</li>
